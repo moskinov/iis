@@ -22,6 +22,9 @@ body {
   color: #333333;
   background: #ffffff;
   min-width: 430px; }
+  body.open {
+    overflow-y: hidden;
+    position: relative; }
 
 .wrap {
   margin: 0 auto;
@@ -176,7 +179,9 @@ a {
         .section._1 .intro b span {
           padding-left: 23px; }
     .section._1 .btn {
-      width: 180px; }
+      width: 180px;
+      padding-left: 0;
+      padding-right: 0; }
     .section._1 .bg {
       position: absolute;
       top: 0;
@@ -640,7 +645,7 @@ a {
     clear: both;
     font-size: 9px;
     line-height: 11px;
-    padding: 60px 0 30px; }
+    padding: 20px 0 50px; }
 
 a.logo {
   display: inline-block;

@@ -2,6 +2,7 @@ $base-color: #333333;
 $min-width: 430px;
 $max-width: 1000px;
 $btn-color: #e31a51;
+$border-color: #cccccc;
 
 @mixin border-radius($radius) {
   -webkit-border-radius:  $radius;

@@ -162,7 +162,16 @@
     left: -20px; }
 
   .faq-slider .owl-nav div.owl-next {
-    right: -20px; } }
+    right: -20px; }
+
+  .section._7 .rul {
+    max-width: inherit; }
+
+  .section._7 .form tr td .valid-box {
+    width: 250px; }
+
+  .section._7 .form tr td.label {
+    font-size: 16px; } }
 @media screen and (max-width: 600px) {
   .section._1 .intro b {
     left: 0; }

@@ -28,6 +28,10 @@ body {
   color: $base-color;
   background: #ffffff;
   min-width: $min-width;
+  &.open {
+    overflow-y: hidden;
+    position: relative;
+  }
 }
 .wrap {
   margin: 0 auto;
@@ -194,6 +198,8 @@ a {
     }
     .btn {
       width: 180px;
+      padding-left: 0;
+      padding-right: 0;
     }
     .bg {
       position: absolute;
@@ -771,7 +777,7 @@ a {
     clear: both;
     font-size: 9px;
     line-height: 11px;
-    padding: 60px 0 30px;
+    padding: 20px 0 50px;
   }
 }
 

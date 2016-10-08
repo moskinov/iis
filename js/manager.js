@@ -3,6 +3,12 @@ function MainManager_f() {
   this.MIN = 50000;
   this.MAX = 400000;
   this.view = $('[data-example-view]');
+  this.phone = $('[data-phone]');
+  this.cirilica = $('[data-cirilica]');
+  this.validate = $('[data-validate]');
+
+  this.regexpCirilica = /^[а-яёА-ЯЁ\s\-]+$/;
+  this.regexpPhone = /^[\+][0-9]{1} [(][0-9]{3}[)] \d{3}-?\d{2}-?\d{2}$/g;
 
   this.init = function () {
 
@@ -28,7 +34,25 @@ function MainManager_f() {
 
     //init main drug & value investment
     MainManager.initDrug('data-slider-example','data-value-example');
-    MainManager.initDrug('data-slider-2','data-value-2');
+
+    //init phone value
+    MainManager.phone.mask("+7 (999) 999-99-99");
+    MainManager.phone.on('focusout',function(){
+      var el = $(this);
+      setTimeout(function(){
+        MainManager.validInit(el,MainManager.regexpPhone,'Телефон введен некорректно')
+      },200);
+    });
+
+    //init cirilica value
+    MainManager.cirilica.on('focusout',function(){
+      MainManager.validInit($(this),MainManager.regexpCirilica,'Только кириллица');
+    });
+
+    //clear error on focus
+    MainManager.validate.focus(function(){
+      MainManager.validClear($(this))
+    });
 
   };
 
@@ -114,6 +138,102 @@ function MainManager_f() {
     var str = p2.toString();
     var res = str.replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, '$1 ');
     return res;
+  }
+
+  this.validInit = function (input,valid,text) {
+
+    MainManager.validClear(input);
+
+    if((input.is('[data-user-middle-name]') && input.val() == '') || (input.is('[data-user-phone]') && input.val() == '')) {
+
+      return true;
+
+    } else {
+
+      if (valid.test(input.val())) {
+
+        MainManager.validClear(input);
+
+        return true;
+
+      } else {
+
+        if(input.val() == '') {
+
+          MainManager.validError(input,'Поле не должно быть пустым');
+
+        } else {
+
+          MainManager.validError(input,text);
+
+        }
+
+        return false;
+      }
+    }
+  };
+
+  this.validClear = function (input) {
+
+    input.removeClass('field-has-error');
+
+    if(input.nextAll().hasClass('textOfError')) {
+      input.nextAll().remove();
+    }
+  };
+
+  this.validError = function (input,text) {
+
+    input.addClass('field-has-error').after('<div class="textOfError color"><span>'+text+'</span></div>');
+
+  }
+
+  this.submitCall = function () {
+
+    var validate = [
+      {
+        name: 'data-name',
+        regexp: MainManager.regexpCirilica,
+        text: 'Только кириллица'
+      },
+      {
+        name: 'data-surname',
+        regexp: MainManager.regexpCirilica,
+        text: 'Только кириллица'
+      },
+      {
+        name: 'data-phone',
+        regexp: MainManager.regexpPhone,
+        text: 'Телефон введен некорректно'
+      }
+    ];
+
+    var valid;
+
+    for (var i in validate) {
+
+      valid = MainManager.validInit($('['+validate[i].name+']'),validate[i].regexp,validate[i].text);
+
+      if (!valid) {
+
+        break;
+      }
+
+    }
+
+    if (valid) {
+      alert("Submit!");
+      return true;
+    } else {
+      return false;
+    }
+
+  }
+
+  this.showModal = function () {
+    $('body').addClass('open');
+    $("html,body").animate({"scrollTop":0},"slow");
+    $('[data-modal]').addClass('open');
   }
 
 

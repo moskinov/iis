@@ -1,23 +1,98 @@
 @import 'vars';
-
+* {
+  outline: none;
+}
 input {
   width: 100%;
   text-align: left;
   color: $base-color;
-  border: 1px solid $base-color;
-  padding: 5px 17px 5px;
-  line-height: 30px;
+  border: 1px solid $border-color;
+  padding: 12px 23px 12px;
   max-height: 50px;
-  font-size: 40px;
-  font-family: 'pf_agora_sans_prothin','Helvetica',Arial,sans-serif;
+  font-family: 'pf_agora_sans_proitalic','Helvetica',Arial,sans-serif;
+  font-size: 20px;
+  line-height: 24px;
   background: transparent;
   display: block;
   @include border-radius(10px);
+  &:focus {
+    background: $btn-color;
+    color: #ffffff;
+  }
 }
 .slide {
   input {
+    font-family: 'pf_agora_sans_prothin','Helvetica',Arial,sans-serif;
+    font-size: 40px;
+    line-height: 30px;
+    border: 1px solid $base-color;
+    padding: 5px 17px 5px;
     &.error {
       background-color: $btn-color;
     }
+  }
+}
+
+.valid-box {
+  position: relative;
+}
+
+.field-has-error {
+  border: 1px solid $btn-color;
+}
+.textOfError {
+  color: $btn-color;
+  padding: 10px 23px 0;
+  font-size: 14px;
+  line-height: 14px;
+}
+.form {
+  width: auto;
+  border-collapse: collapse;
+  tr {
+    td {
+      vertical-align: top;
+      padding-bottom: 10px;
+      &.label {
+        font-size: 20px;
+        padding-top: 14px;
+        padding-right: 40px;
+        span {
+          color: $btn-color;
+        }
+      }
+      .valid-box {
+        width: 300px;
+      }
+      .btn {
+        width: 180px;
+        padding-left: 0;
+        padding-right: 0;
+        margin-top: 20px;
+      }
+    }
+  }
+}
+
+.modal {
+  position: fixed;
+  background: rgba(0, 0, 0, 0.5);
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 500;
+  opacity: 0;
+  visibility: hidden;
+  overflow-y: scroll;
+  &.open {
+    opacity: 1;
+    visibility: visible;
+  }
+  .modal-content {
+    background: #fff;
+    overflow: hidden;
+    margin: 30px auto;
+    width: 1140px;
   }
 }
