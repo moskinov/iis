@@ -69,10 +69,14 @@ asdfasdfasdfasdfasdfasffasf
                             или освобождение инвестиционного дохода от уплаты налога.</p>
                     </div>
 
-                    <button onclick="MainManager.showModal()" class="btn animated fadeInUpShort">
+                    <button onclick="MainManager.showModal('application')" class="btn animated fadeInUpShort">
                         отправить
                         <br>
                         заявку
+                    </button>
+
+                    <button onclick="MainManager.showModal('purchase')" class="btn big animated fadeInUpShort">
+                        купить
                     </button>
 
                 </div>
@@ -282,7 +286,6 @@ asdfasdfasdfasdfasdfasffasf
                             <div data-slider-example class="nstSlider"
                                  data-range_min="50000"
                                  data-range_max="400000"
-                                 data-cur_min="200000"
                                  data-cur_max="400000">
                                 <div class="bar"></div>
                                 <div class="leftGrip"></div>
