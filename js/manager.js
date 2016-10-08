@@ -59,7 +59,14 @@ function MainManager_f() {
   this.initDrug = function (drug, input) {
 
     var inputEl = $('['+input+']'),
-        dragEl = $('['+drug+']');
+        dragEl = $('['+drug+']'),
+        getVal = sessionStorage.getItem('value');
+
+    if(getVal || getVal > MainManager.MIN && getVal < MainManager.MAX) {
+      dragEl.attr('data-cur_min',getVal);
+    } else {
+      dragEl.attr('data-cur_min',200000);
+    }
 
     dragEl.nstSlider({
       "rounding": {
@@ -82,6 +89,8 @@ function MainManager_f() {
           inputEl.val(leftValue);
           inputEl.removeClass('error');
 
+          sessionStorage.value = leftValue;
+
           if(drug == 'data-slider-example') {
             MainManager.showResultMain(leftValue);
           }
@@ -100,8 +109,10 @@ function MainManager_f() {
 
       if (val < MainManager.MIN || val > MainManager.MAX) {
         $(this).addClass('error');
+        sessionStorage.value = '';
       } else {
         $(this).removeClass('error');
+        sessionStorage.value = val;
       }
 
       dragEl.nstSlider('set_position', val, MainManager.MAX);
@@ -144,11 +155,11 @@ function MainManager_f() {
 
     MainManager.validClear(input);
 
-    if((input.is('[data-user-middle-name]') && input.val() == '') || (input.is('[data-user-phone]') && input.val() == '')) {
+    //if((input.is('[data-user-middle-name]') && input.val() == '') || (input.is('[data-user-phone]') && input.val() == '')) {
 
-      return true;
+    //  return true;
 
-    } else {
+    //} else {
 
       if (valid.test(input.val())) {
 
@@ -170,7 +181,7 @@ function MainManager_f() {
 
         return false;
       }
-    }
+    //}
   };
 
   this.validClear = function (input) {
