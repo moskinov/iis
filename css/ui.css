@@ -1,0 +1,21 @@
+input {
+  width: 100%;
+  text-align: left;
+  color: #333333;
+  border: 1px solid #333333;
+  padding: 5px 17px 5px;
+  line-height: 30px;
+  max-height: 50px;
+  font-size: 40px;
+  font-family: 'pf_agora_sans_prothin','Helvetica',Arial,sans-serif;
+  background: transparent;
+  display: block;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  border-radius: 10px; }
+
+.slide input.error {
+  background-color: #e31a51; }
+
+/*# sourceMappingURL=ui.css.map */

@@ -1,0 +1,23 @@
+@import 'vars';
+
+input {
+  width: 100%;
+  text-align: left;
+  color: $base-color;
+  border: 1px solid $base-color;
+  padding: 5px 17px 5px;
+  line-height: 30px;
+  max-height: 50px;
+  font-size: 40px;
+  font-family: 'pf_agora_sans_prothin','Helvetica',Arial,sans-serif;
+  background: transparent;
+  display: block;
+  @include border-radius(10px);
+}
+.slide {
+  input {
+    &.error {
+      background-color: $btn-color;
+    }
+  }
+}
