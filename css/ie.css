@@ -32,6 +32,22 @@
   filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#50000000,endColorstr=#50000000);
   zoom: 1;
 }
+.checkbox-label .checkbox {
+  position: absolute;
+  left: 0;
+  visibility: visible;
+  width: 30px;
+  height: 30px;
+}
+.tool .tool-text {
+  border: 1px solid #cccccc;
+  background: #ffffff;
+  z-index: 10;
+  zoom: 1;
+}
+.checkbox-label .checkbox + .checkbox-label-text:before {
+  display: none;
+}
 @media screen and (max-width: 680px) {
   .faq-slider {
     margin-left: 20px;

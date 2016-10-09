@@ -187,6 +187,9 @@
     float: none;
     margin-left: 0;
     margin-bottom: 20px;
-    text-align: center !important; } }
+    text-align: center !important; }
+
+  .section._1 .btn {
+    width: 140px; } }
 
 /*# sourceMappingURL=media.css.map */

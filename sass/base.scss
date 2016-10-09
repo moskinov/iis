@@ -200,6 +200,9 @@ a {
       width: 180px;
       padding-left: 0;
       padding-right: 0;
+      &.big {
+        margin-left: 50px;
+      }
     }
     .bg {
       position: absolute;
@@ -481,6 +484,8 @@ a {
     background: #00adeb;
     height: 4px;
     bottom: -4px;
+    right: 0;
+    left: auto !important;
   }
   .leftGrip {
     position: absolute;
@@ -490,7 +495,7 @@ a {
     border-left: 6px solid transparent;
     border-right: 6px solid transparent;
     border-bottom: 10px solid #ffffff;
-    margin-left: -2px;
+    margin-left: 0;
   }
 }
 
@@ -548,6 +553,14 @@ a {
     input {
       color: #ffffff;
       background: #00adeb;
+      border: 1px solid #333333;
+      font-family: 'pf_agora_sans_prothin','Helvetica',Arial,sans-serif;
+      font-size: 40px;
+      line-height: 30px;
+      padding: 5px 17px 5px;
+      &.error {
+        background-color: $btn-color;
+      }
     }
     &.first {
       width: 300px;
@@ -835,10 +848,15 @@ button,a.btn {
   line-height: 16px;
   outline: none;
   cursor: pointer;
+  vertical-align: top;
   @include  transition(all 0.3s);
   &:hover {
     color: #ffffff;
     background: $btn-color;
+  }
+  &.big {
+    padding-top: 21px;
+    padding-bottom: 20px;
   }
 }
 

@@ -34,11 +34,203 @@
 </head>
 <body>
 
-<div class="modal" data-modal>
+<div class="modal" data-modal="application">
     <div class="modal-content">
-asdfasdfasdfasdfasdfasffasf
-        <br>
-        fasdfasdfasdfasdfasdf
+        <div class="wrap">
+            <div class="content">
+                <div class="close" onclick="MainManager.hideModal('application')"></div>
+                <h2 class="m-b20">Отправить заявку</h2>
+
+                <form action="" id="application">
+                    <div class="application owl-carousel owl-theme" data-step-form="application">
+                        <div class="item _1">
+                            <div class="step m-b20">Шаг 1 из 2</div>
+                            <table class="form">
+                                <tr>
+                                    <td class="label">Ваш инвестиционный продукт&nbsp;<span>*</span></td>
+                                    <td>
+                                        <div class="valid-box">
+                                            <select name="strategy" form="application">
+                                                <option value="Агрессивная" selected>Агрессивная</option>
+                                                <option value="Сбалансированная">Сбалансированная</option>
+                                                <option value="Консервативная">Консервативная</option>
+                                            </select>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="label">Сумма инвестирования&nbsp;<span>*</span></td>
+                                    <td>
+                                        <div class="valid-box">
+                                            <div class="input slide">
+
+                                                <input data-numeral data-value-application type="text" value="">
+
+                                                <div data-slider-application class="nstSlider"
+                                                     data-range_min="50000"
+                                                     data-range_max="400000"
+                                                     data-cur_min="200000"
+                                                     data-cur_max="400000">
+                                                    <div class="bar"></div>
+                                                    <div class="leftGrip"></div>
+                                                </div>
+
+                                                <div class="rub"></div>
+
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">
+                                        <label class="checkbox-label">
+                                            <input data-choice="no" class="checkbox" type="radio" name="choice" onchange="MainManager.choiceApplication('no')">
+                                            <span class="checkbox-label-text">
+                                                на дату подачи настоящего заявления у меня отсутствует договор с другим
+                                                профессиональным участником рынка ценных бумаг на ведение индивидуального инвестиционного счета
+                                            </span>
+                                        </label>
+                                        <label class="checkbox-label">
+                                            <input data-choice="yes" class="checkbox" type="radio" name="choice" onchange="MainManager.choiceApplication('yes')">
+                                            <span class="checkbox-label-text">
+                                                на дату подачи настоящего заявления у меня действует договор на ведение индивидуального инвестиционного счета
+                                                <div class="tool">
+                                                    <div class="tool-text">
+                                                      Необходимо в течение месяца расторгнуть договор c предыдущим профессиональным участником рынка ценных бумаг
+                                                    </div>
+                                                </div>
+                                            </span>
+                                        </label>
+                                    </td>
+                                </tr>
+                                <tr data-choice-block class="no">
+                                    <td class="label">Наименование <br> профессионального <br> участника&nbsp;<span>*</span></td>
+                                    <td>
+                                        <div class="valid-box">
+                                            <div class="valid-box">
+                                                <input type="text" data-all data-validate>
+                                            </div>
+                                            <div class="hint">и он будет прекращен не позднее одного месяца с даты заключения Договора ИИС с Управляющей компанией</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" class="sub">
+                                        Просим Вас заполнить персональные данные <br>
+                                        для оформления заявки на присоединение к договору ДУ ИИС
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="label">Фамилия&nbsp;<span>*</span></td>
+                                    <td>
+                                        <div class="valid-box">
+                                            <input data-application-surname data-cirilica data-validate type="text">
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="label">Имя&nbsp;<span>*</span></td>
+                                    <td>
+                                        <div class="valid-box">
+                                            <input data-application-name data-cirilica data-validate type="text">
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="label">Отчество&nbsp;<span>*</span></td>
+                                    <td>
+                                        <div class="valid-box">
+                                            <input data-application-middlename data-cirilica data-validate type="text">
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="label">E-mail&nbsp;<span>*</span></td>
+                                    <td>
+                                        <div class="valid-box">
+                                            <input data-application-mail data-mail data-validate type="text">
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="label">Мобильный телефон&nbsp;<span>*</span></td>
+                                    <td>
+                                        <div class="valid-box">
+                                            <input data-application-phone data-phone type="text" data-validate placeholder="+7 (  ·  ·  ·  )  ·  ·  ·  –  ·  ·  –  ·  ·">
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="label">Серия и № паспорта&nbsp;<span>*</span></td>
+                                    <td>
+                                        <div class="valid-box">
+                                            <input data-series type="text" data-validate>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="label">Кем выдан паспорт&nbsp;<span>*</span></td>
+                                    <td>
+                                        <div class="valid-box">
+                                            <input data-issued data-all type="text" data-validate>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="label">Дата выдачи&nbsp;<span>*</span></td>
+                                    <td>
+                                        <div class="valid-box select-date">
+                                            <select data-day name="" form="application">
+                                                <option value="01" selected>01</option>
+
+                                            </select>
+                                            <select data-month name="" form="application">
+                                                <option value="01" selected>01</option>
+                                            </select>
+                                            <select data-year class="last" name="" form="application">
+                                                <option value="2001" selected>2001</option>
+                                            </select>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="label">Код подразделения&nbsp;<span>*</span></td>
+                                    <td>
+                                        <div class="valid-box">
+                                            <input data-code type="text" data-validate>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" class="sub last">
+                                        Забыли свой ИНН? <br>
+                                        Мы готовы помочь — <a href="https://service.nalog.ru/inn.html" target="_blank">узнайте ИНН на сайте ФНС</a> за 1 минуту!
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="label">ИНН <div class="hint-info">необязательное поле</div></td>
+                                    <td>
+                                        <div class="valid-box">
+                                            <input type="text">
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="label"></td>
+                                    <td>
+                                        <button class="btn big" onclick="MainManager.nextStep('application',1); return false">продолжить</button>
+                                    </td>
+                                </tr>
+
+                            </table>
+                        </div>
+                        <div class="item _2">
+                            <div class="step m-b20">Шаг 2 из 2</div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
 </div>
 
@@ -75,7 +267,11 @@ asdfasdfasdfasdfasdfasffasf
                         заявку
                     </button>
 
-                    <button onclick="MainManager.showModal('purchase')" class="btn big animated fadeInUpShort">
+                    <!--<button onclick="MainManager.showModal('purchase')" class="btn big animated fadeInUpShort">
+                        купить
+                    </button>-->
+
+                    <button class="btn big animated fadeInUpShort">
                         купить
                     </button>
 
@@ -281,11 +477,12 @@ asdfasdfasdfasdfasdfasffasf
 
                         <div class="input slide">
 
-                            <input data-value data-value-example type="text" value="">
+                            <input data-numeral data-value-example type="text" value="">
 
                             <div data-slider-example class="nstSlider"
                                  data-range_min="50000"
                                  data-range_max="400000"
+                                 data-cur_min="200000"
                                  data-cur_max="400000">
                                 <div class="bar"></div>
                                 <div class="leftGrip"></div>
@@ -607,7 +804,7 @@ asdfasdfasdfasdfasdfasffasf
                                             <td class="label">Мобильный телефон&nbsp;<span>*</span></td>
                                             <td>
                                                 <div class="valid-box">
-                                                    <input data-phone type="text" data-validate name="">
+                                                    <input data-phone-contact type="text" data-phone data-validate name placeholder="+7 (  ·  ·  ·  )  ·  ·  ·  –  ·  ·  –  ·  ·">
                                                 </div>
                                             </td>
                                         </tr>

@@ -182,6 +182,8 @@ a {
       width: 180px;
       padding-left: 0;
       padding-right: 0; }
+      .section._1 .btn.big {
+        margin-left: 50px; }
     .section._1 .bg {
       position: absolute;
       top: 0;
@@ -404,7 +406,9 @@ a {
     position: absolute;
     background: #00adeb;
     height: 4px;
-    bottom: -4px; }
+    bottom: -4px;
+    right: 0;
+    left: auto !important; }
   .nstSlider .leftGrip {
     position: absolute;
     bottom: -2px;
@@ -413,7 +417,7 @@ a {
     border-left: 6px solid transparent;
     border-right: 6px solid transparent;
     border-bottom: 10px solid #ffffff;
-    margin-left: -2px; }
+    margin-left: 0; }
 
 .set-slide {
   background: #00adeb;
@@ -460,7 +464,14 @@ a {
     width: 300px; }
     .set-slide .input input {
       color: #ffffff;
-      background: #00adeb; }
+      background: #00adeb;
+      border: 1px solid #333333;
+      font-family: 'pf_agora_sans_prothin','Helvetica',Arial,sans-serif;
+      font-size: 40px;
+      line-height: 30px;
+      padding: 5px 17px 5px; }
+      .set-slide .input input.error {
+        background-color: #e31a51; }
     .set-slide .input.first {
       width: 300px; }
   .set-slide .text-intro {
@@ -701,6 +712,7 @@ button, a.btn {
   line-height: 16px;
   outline: none;
   cursor: pointer;
+  vertical-align: top;
   -webkit-transition: all 0.3s;
   -moz-transition: all 0.3s;
   -ms-transition: all 0.3s;
@@ -708,6 +720,9 @@ button, a.btn {
   button:hover, a.btn:hover {
     color: #ffffff;
     background: #e31a51; }
+  button.big, a.btn.big {
+    padding-top: 21px;
+    padding-bottom: 20px; }
 
 @-moz-keyframes moveTop {
   50% {

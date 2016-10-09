@@ -1,16 +1,52 @@
 function MainManager_f() {
 
   this.MIN = 50000;
+  this.MIDDLE = 200000;
   this.MAX = 400000;
   this.view = $('[data-example-view]');
+  this.validate = $('[data-validate]');
+  this.applicationStep = $('[data-slide-application]');
+
   this.phone = $('[data-phone]');
   this.cirilica = $('[data-cirilica]');
-  this.validate = $('[data-validate]');
+  this.mail = $('[data-mail]');
+  this.numeral = $('[data-numeral]');
+  this.series = $('[data-series]');
+  this.code = $('[data-code]');
+  this.all = $('[data-all]');
 
-  this.regexpCirilica = /^[а-яёА-ЯЁ\s\-]+$/;
-  this.regexpPhone = /^[\+][0-9]{1} [(][0-9]{3}[)] \d{3}-?\d{2}-?\d{2}$/g;
+  this.regexpCirilica = /^[ёЁа-яА-Яa-zA-Z\s\-]+$/;
+  this.regexpMail = /^[-\w.]+@([A-z0-9][-A-z0-9]+\.)+[A-z]{2,4}$/;
+  this.regexpAll = /[^\>]*/;
 
   this.init = function () {
+
+    //static append day select
+    for(var i=2; i < 32; i++) {
+      if(i < 10) {
+        $('[data-day]').append('<option value="0'+i+'">0'+i+'</option>')
+      } else {
+        $('[data-day]').append('<option value="'+i+'">'+i+'</option>')
+      }
+    }
+
+    //static append month select
+    for(var i=2; i < 13; i++) {
+      if(i < 10) {
+        $('[data-month]').append('<option value="0'+i+'">0'+i+'</option>')
+      } else {
+        $('[data-month]').append('<option value="'+i+'">'+i+'</option>')
+      }
+    }
+
+    //static append year select
+    for(var i=2; i < 17; i++) {
+      if(i < 10) {
+        $('[data-year]').append('<option value="0'+i+'">200'+i+'</option>')
+      } else {
+        $('[data-year]').append('<option value="'+i+'">20'+i+'</option>')
+      }
+    }
 
     //quote slider init
     $('[data-main-slider],[data-faq-slider]').owlCarousel({
@@ -22,8 +58,20 @@ function MainManager_f() {
       navText: ['','']
     });
 
+    ////init steps application form
+    //MainManager.applicationStep.owlCarousel({
+    //  items: 1,
+    //  nav: false,
+    //  mouseDrag: false,
+    //  autoHeight: true,
+    //  navRewind: false,
+    //  navText: ['','']
+    //});
+
+
+
     //input check value
-    $('[data-value]').keydown(function (e) {
+    MainManager.numeral.keydown(function (e) {
       if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110, 190]) !== -1 || (e.keyCode === 65 && (e.ctrlKey === true || e.metaKey === true)) || (e.keyCode >= 35 && e.keyCode <= 40)) {
         return;
       }
@@ -35,18 +83,49 @@ function MainManager_f() {
     //init main drug & value investment
     MainManager.initDrug('data-slider-example','data-value-example');
 
+    //init application drug & value investment
+    MainManager.initDrug('data-slider-application','data-value-application');
+
     //init phone value
     MainManager.phone.mask("+7 (999) 999-99-99");
     MainManager.phone.on('focusout',function(){
       var el = $(this);
       setTimeout(function(){
-        MainManager.validInit(el,MainManager.regexpPhone,'Телефон введен некорректно')
+        MainManager.validInit(el,MainManager.regexpAll,'Поле не должно быть пустым')
+      },200);
+    });
+
+    //init cirilica value
+    MainManager.series.mask('99 99 999 999');
+    MainManager.series.on('focusout',function(){
+      var el = $(this);
+      setTimeout(function(){
+        MainManager.validInit(el,MainManager.regexpAll,'Поле не должно быть пустым')
+      },200);
+    });
+
+    //init code value
+    MainManager.code.mask('999-999');
+    MainManager.code.on('focusout',function(){
+      var el = $(this);
+      setTimeout(function(){
+        MainManager.validInit(el,MainManager.regexpAll,'Поле не должно быть пустым')
       },200);
     });
 
     //init cirilica value
     MainManager.cirilica.on('focusout',function(){
-      MainManager.validInit($(this),MainManager.regexpCirilica,'Только кириллица');
+      MainManager.validInit($(this),MainManager.regexpCirilica,'Только буквы, пробел и дефис');
+    });
+
+    //init mail value
+    MainManager.mail.on('focusout',function(){
+      MainManager.validInit($(this),MainManager.regexpMail,'E-mail введен некорректно');
+    });
+
+    //init all value
+    MainManager.all.on('focusout',function(){
+      MainManager.validInit($(this),MainManager.regexpAll,'Поле не должно быть пустым');
     });
 
     //clear error on focus
@@ -62,11 +141,11 @@ function MainManager_f() {
         dragEl = $('['+drug+']'),
         getVal = sessionStorage.getItem('value');
 
-    if(getVal || getVal > MainManager.MIN && getVal < MainManager.MAX) {
-      dragEl.attr('data-cur_min',getVal);
-    } else {
-      dragEl.attr('data-cur_min',200000);
-    }
+    //if(getVal || getVal > MainManager.MIN && getVal < MainManager.MAX) {
+    //  dragEl.attr('data-cur_min',getVal);
+    //} else {
+    //  dragEl.attr('data-cur_min',200000);
+    //}
 
     dragEl.nstSlider({
       "rounding": {
@@ -89,7 +168,7 @@ function MainManager_f() {
           inputEl.val(leftValue);
           inputEl.removeClass('error');
 
-          sessionStorage.value = leftValue;
+          //sessionStorage.value = leftValue;
 
           if(drug == 'data-slider-example') {
             MainManager.showResultMain(leftValue);
@@ -109,10 +188,10 @@ function MainManager_f() {
 
       if (val < MainManager.MIN || val > MainManager.MAX) {
         $(this).addClass('error');
-        sessionStorage.value = '';
+        //sessionStorage.value = '';
       } else {
         $(this).removeClass('error');
-        sessionStorage.value = val;
+        //sessionStorage.value = val;
       }
 
       dragEl.nstSlider('set_position', val, MainManager.MAX);
@@ -153,6 +232,7 @@ function MainManager_f() {
 
   this.validInit = function (input,valid,text) {
 
+
     MainManager.validClear(input);
 
     //if((input.is('[data-user-middle-name]') && input.val() == '') || (input.is('[data-user-phone]') && input.val() == '')) {
@@ -161,7 +241,7 @@ function MainManager_f() {
 
     //} else {
 
-      if (valid.test(input.val())) {
+      if (valid.test(input.val()) && input.val() != '') {
 
         MainManager.validClear(input);
 
@@ -197,7 +277,7 @@ function MainManager_f() {
 
     input.addClass('field-has-error').after('<div class="textOfError color"><span>'+text+'</span></div>');
 
-  }
+  };
 
   this.submitCall = function () {
 
@@ -205,17 +285,17 @@ function MainManager_f() {
       {
         name: 'data-name',
         regexp: MainManager.regexpCirilica,
-        text: 'Только кириллица'
+        text: 'Только буквы, пробел и дефис'
       },
       {
         name: 'data-surname',
         regexp: MainManager.regexpCirilica,
-        text: 'Только кириллица'
+        text: 'Только буквы, пробел и дефис'
       },
       {
-        name: 'data-phone',
-        regexp: MainManager.regexpPhone,
-        text: 'Телефон введен некорректно'
+        name: 'data-phone-contact',
+        regexp: MainManager.regexpAll,
+        text: 'Поле не должно быть пустым'
       }
     ];
 
@@ -239,13 +319,138 @@ function MainManager_f() {
       return false;
     }
 
-  }
+  };
 
-  this.showModal = function () {
+  this.nextStep = function (form, page){
+
+    if(page == 1) {
+      var validate = [
+        {
+          name: 'data-application-surname',
+          regexp: MainManager.regexpCirilica,
+          text: 'Только буквы, пробел и дефис'
+        },
+        {
+          name: 'data-application-name',
+          regexp: MainManager.regexpCirilica,
+          text: 'Только буквы, пробел и дефис'
+        },
+        {
+          name: 'data-application-middlename',
+          regexp: MainManager.regexpCirilica,
+          text: 'Только буквы, пробел и дефис'
+        },
+        {
+          name: 'data-application-mail',
+          regexp: MainManager.regexpMail,
+          text: 'E-mail введен некорректно'
+        },
+        {
+          name: 'data-application-phone',
+          regexp: MainManager.regexpAll,
+          text: 'Поле не должно быть пустым'
+        },
+        {
+          name: 'data-series',
+          regexp: MainManager.regexpAll,
+          text: 'Поле не должно быть пустым'
+        },
+        {
+          name: 'data-issued',
+          regexp: MainManager.regexpAll,
+          text: 'Поле не должно быть пустым'
+        },
+        {
+          name: 'data-code',
+          regexp: MainManager.regexpAll,
+          text: 'Поле не должно быть пустым'
+        }
+      ];
+
+      var valid;
+      var validDrag = !$('[data-value-application]').hasClass('error');
+      var choice = $('[data-choice]').is(':checked');
+
+      for (var i in validate) {
+
+        valid = MainManager.validInit($('['+validate[i].name+']'),validate[i].regexp,validate[i].text);
+
+        if (!valid) {
+          //$("[data-modal]").animate({"scrollTop":300},"slow");
+          break;
+        }
+
+      }
+
+      if (valid && validDrag && choice) {
+
+        $('[data-step-form='+form+']').trigger('next.owl.carousel');
+
+      } else {
+
+
+
+      }
+
+    }
+
+
+  };
+
+  this.showModal = function (modal) {
     $('body').addClass('open');
-    $("html,body").animate({"scrollTop":0},"slow");
-    $('[data-modal]').addClass('open');
+    $('[data-modal='+modal+']').addClass('open');
+    var drag = $('[data-slider-'+modal+']');
+
+    if(modal == 'application') {
+      $('[data-step-form='+modal+']').owlCarousel({
+        items: 1,
+        nav: false,
+        mouseDrag: false,
+        autoHeight: true,
+        navRewind: false,
+        smartSpeed: 100,
+        navText: ['','']
+      });
+
+
+      drag.nstSlider('refresh');
+      drag.nstSlider('set_position', MainManager.MIDDLE, MainManager.MAX);
+
+    }
+
+  };
+
+  this.hideModal = function (modal) {
+    $('body').removeClass('open');
+    $('[data-modal='+modal+']').removeClass('open');
+    MainManager.clearForm(modal);
+  };
+
+  this.clearForm = function (form) {
+
+    $('[data-step-form='+form+']').trigger('destroy.owl.carousel');
+    var form = $('#'+form+'');
+
+    form.find('[data-validate]').each(function(){
+      MainManager.validClear($(this))
+    });
+
+    form.trigger("reset");
+
+  };
+
+  this.choiceApplication = function (choice) {
+
+    if(choice == 'yes') {
+      $('[data-choice-block]').removeClass('no');
+      $('[data-step-form="application"]').trigger('refresh.owl.carousel');
+    } else {
+      $('[data-choice-block]').addClass('no');
+      $('[data-step-form="application"]').trigger('refresh.owl.carousel');
+    }
+
+    //check.is(':checked')
+
   }
-
-
 }
