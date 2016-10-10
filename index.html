@@ -108,7 +108,7 @@
                                     <td>
                                         <div class="valid-box">
                                             <div class="valid-box">
-                                                <input type="text" data-all data-validate>
+                                                <input data-participant type="text" data-all data-validate>
                                             </div>
                                             <div class="hint">и он будет прекращен не позднее одного месяца с даты заключения Договора ИИС с Управляющей компанией</div>
                                         </div>
@@ -211,14 +211,14 @@
                                     <td class="label">ИНН <div class="hint-info">необязательное поле</div></td>
                                     <td>
                                         <div class="valid-box">
-                                            <input type="text">
+                                            <input type="text" data-numeral>
                                         </div>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td class="label"></td>
                                     <td>
-                                        <button class="btn big" onclick="MainManager.nextStep('application',1); return false">продолжить</button>
+                                        <a href="#" class="btn big" onclick="MainManager.nextStep('application',1,event); return false">продолжить</button>
                                     </td>
                                 </tr>
 
@@ -426,33 +426,33 @@
                         <div class="col col_3 animated fadeInUpShort">
                             <div class="title">Агрессивная</div>
 
-                            <div class="count _1">
+                            <a href="#" class="count _1">
                                 <div class="text">ожидаемая<br>доходность</div>
                                 <div class="percent">43<span>%</span></div>
                                 <div class="sum"><span data-strategy="43">0</span></div>
-                            </div>
+                            </a>
 
                             <a href="#">узнать больше</a>
                         </div>
                         <div class="col col_3 animated fadeInUpShort">
                             <div class="title">Сбалансированная</div>
 
-                            <div class="count _2">
+                            <a href="#" class="count _2">
                                 <div class="text">ожидаемая<br>доходность</div>
                                 <div class="percent">27<span>%</span></div>
                                 <div class="sum"><span data-strategy="27">0</span></div>
-                            </div>
+                            </a>
 
                             <a href="#">узнать больше</a>
                         </div>
                         <div class="col col_3 animated fadeInUpShort">
                             <div class="title">Консервативная</div>
 
-                            <div class="count _3">
+                            <a href="#" class="count _3">
                                 <div class="text">ожидаемая<br>доходность</div>
                                 <div class="percent">22<span>%</span></div>
                                 <div class="sum"><span data-strategy="22">0</span></div>
-                            </div>
+                            </a>
 
                             <a href="#">узнать больше</a>
                         </div>

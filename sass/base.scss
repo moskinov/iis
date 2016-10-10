@@ -394,6 +394,7 @@ a {
   .col {
     text-align: center;
     .count {
+      text-decoration: none;
       color: #ffffff;
       width: 220px;
       height: 160px;
@@ -403,6 +404,7 @@ a {
       background-repeat: no-repeat;
       position: relative;
       font-family: 'pf_agora_sans_promedium','Helvetica',Arial,sans-serif;
+      @include transition(all 0.3s);
       &._1 {
         background-image: url("../img/s1.png");
       }
@@ -444,6 +446,9 @@ a {
           background: no-repeat right center;
           background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABMAAAAcCAMAAAC02HQrAAAA8FBMVEX///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////9maKSpAAAAT3RSTlMABggKDhAUGiAhKywtNDU5Oz0+P0FERkdLTE5XX2RlbW5vcHJzdHV3eHt8gYKDio6QlJWXnKSmq6+2ubrFxsrNz9fZ293j5fH19/j6+/z+5RykgQAAAMhJREFUeNqlztlOAkEQheGjbDKAgoCyKqLIDsomq7LDsHje/22gm3ZCpk288Lup5E8lVQBi/GGOiz5IUX6kpHpnymFAtUco101+uk8tD0uNBa05VwutoUOP1jKMae2F91qrMaC16e7C3m45ECPCVyv5J9sgcOmIs+QQXB7jYfb9DiBVaXNQEd66cy6rOOqbG+5NYb0YN0IQ7hJFthOSF5Ygs7ATv9iFmbOVKyPNuqG4IY14pgzpudXjV0tJQrnh0293/9EKf+8dANG3KJ3t6N12AAAAAElFTkSuQmCC);
         }
+      }
+      &:hover {
+        @include transform(scale(1.1));
       }
     }
     a {

@@ -14,6 +14,8 @@ function MainManager_f() {
   this.series = $('[data-series]');
   this.code = $('[data-code]');
   this.all = $('[data-all]');
+  this.choice = $('[data-choice]');
+  this.choiceBlock = $('[data-choice-block]');
 
   this.regexpCirilica = /^[ёЁа-яА-Яa-zA-Z\s\-]+$/;
   this.regexpMail = /^[-\w.]+@([A-z0-9][-A-z0-9]+\.)+[A-z]{2,4}$/;
@@ -321,7 +323,7 @@ function MainManager_f() {
 
   };
 
-  this.nextStep = function (form, page){
+  this.nextStep = function (form, page, e){
 
     if(page == 1) {
       var validate = [
@@ -369,32 +371,64 @@ function MainManager_f() {
 
       var valid;
       var validDrag = !$('[data-value-application]').hasClass('error');
-      var choice = $('[data-choice]').is(':checked');
+      var choice = MainManager.choice.is(':checked');
+      var choiceYes = $('[data-choice="yes"]').is(':checked');
+      var choiceValue = $('[data-participant]').val().length;
 
-      for (var i in validate) {
+      if(validDrag) {
+        if(choice && !choiceYes || choiceYes && choiceValue) {
+          for (var i in validate) {
 
-        valid = MainManager.validInit($('['+validate[i].name+']'),validate[i].regexp,validate[i].text);
+            valid = MainManager.validInit($('['+validate[i].name+']'),validate[i].regexp,validate[i].text);
 
-        if (!valid) {
-          //$("[data-modal]").animate({"scrollTop":300},"slow");
-          break;
+            if (!valid) {
+              MainManager.scrollFieldError($('['+validate[i].name+']'));
+              break;
+            }
+
+          }
+        }
+        if(!choice) {
+          MainManager.choice.addClass('field-has-error');
+          MainManager.scrollFieldError(MainManager.choice);
         }
 
+        if(choiceYes && !choiceValue) {
+          MainManager.validError($('[data-participant]'),'Поле не должно быть пустым');
+          MainManager.scrollFieldError($('[data-participant]'));
+        }
+      } else {
+        MainManager.scrollFieldError($('[data-value-application]'));
       }
+
 
       if (valid && validDrag && choice) {
 
-        $('[data-step-form='+form+']').trigger('next.owl.carousel');
+        if(choiceYes) {
+          if(choiceValue) {
+            $('[data-step-form='+form+']').trigger('next.owl.carousel');
+          }
+        } else {
+          $('[data-step-form='+form+']').trigger('next.owl.carousel');
+        }
+
 
       } else {
 
-
+        return false;
 
       }
 
     }
 
 
+  };
+
+  this.scrollFieldError = function(field) {
+
+    $('[data-modal]').animate({
+      scrollTop: field.offset().top + 400
+    }, 500);
   };
 
   this.showModal = function (modal) {
@@ -407,6 +441,8 @@ function MainManager_f() {
         items: 1,
         nav: false,
         mouseDrag: false,
+        touchDrag: false,
+        pullDrag: false,
         autoHeight: true,
         navRewind: false,
         smartSpeed: 100,
@@ -416,9 +452,16 @@ function MainManager_f() {
 
       drag.nstSlider('refresh');
       drag.nstSlider('set_position', MainManager.MIDDLE, MainManager.MAX);
+      MainManager.resizeModal(drag);
 
     }
 
+  };
+
+  this.resizeModal = function(drag) {
+    $(window).resize(function(){
+      drag.nstSlider('refresh');
+    })
   };
 
   this.hideModal = function (modal) {
@@ -430,27 +473,33 @@ function MainManager_f() {
   this.clearForm = function (form) {
 
     $('[data-step-form='+form+']').trigger('destroy.owl.carousel');
-    var form = $('#'+form+'');
+    var formId = $('#'+form+'');
 
-    form.find('[data-validate]').each(function(){
+    formId.find('[data-validate]').each(function(){
       MainManager.validClear($(this))
     });
 
-    form.trigger("reset");
+    if(form == 'application') {
+      MainManager.choiceBlock.addClass('no');
+      MainManager.choice.removeClass('field-has-error');
+    }
+
+    formId.trigger("reset");
 
   };
 
   this.choiceApplication = function (choice) {
 
+    MainManager.choice.removeClass('field-has-error');
+
     if(choice == 'yes') {
-      $('[data-choice-block]').removeClass('no');
+      MainManager.choiceBlock.removeClass('no');
       $('[data-step-form="application"]').trigger('refresh.owl.carousel');
     } else {
-      $('[data-choice-block]').addClass('no');
+      MainManager.choiceBlock.addClass('no');
       $('[data-step-form="application"]').trigger('refresh.owl.carousel');
     }
 
-    //check.is(':checked')
 
   }
 }
