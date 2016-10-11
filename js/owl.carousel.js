@@ -684,13 +684,13 @@
 
 		if (this.settings.mouseDrag) {
 			this.$element.addClass(this.options.dragClass);
-			this.$stage.on('mousedown.owl.core', $.proxy(this.onDragStart, this));
+			//this.$stage.on('mousedown.owl.core', $.proxy(this.onDragStart, this));
 			this.$stage.on('dragstart.owl.core selectstart.owl.core', function() { return false });
 		}
 
 		if (this.settings.touchDrag){
-			this.$stage.on('touchstart.owl.core', $.proxy(this.onDragStart, this));
-			this.$stage.on('touchcancel.owl.core', $.proxy(this.onDragEnd, this));
+			//this.$stage.on('touchstart.owl.core', $.proxy(this.onDragStart, this));
+			//this.$stage.on('touchcancel.owl.core', $.proxy(this.onDragEnd, this));
 		}
 	};
 

@@ -34,11 +34,12 @@
 </head>
 <body>
 
-<div class="modal" data-modal="application">
+    <!--modal application-->
+    <div class="modal" data-modal="application">
     <div class="modal-content">
         <div class="wrap">
             <div class="content">
-                <div class="close" onclick="MainManager.hideModal('application')"></div>
+                <div class="close" onclick="MainManager.hideModal('application', true)"></div>
                 <h2 class="m-b20">Отправить заявку</h2>
 
                 <form action="" id="application">
@@ -64,7 +65,7 @@
                                         <div class="valid-box">
                                             <div class="input slide">
 
-                                                <input data-numeral data-value-application type="text" value="">
+                                                <input data-numeral data-value-application type="text" value="" name="amount">
 
                                                 <div data-slider-application class="nstSlider"
                                                      data-range_min="50000"
@@ -84,14 +85,14 @@
                                 <tr>
                                     <td colspan="2">
                                         <label class="checkbox-label">
-                                            <input data-choice="no" class="checkbox" type="radio" name="choice" onchange="MainManager.choiceApplication('no')">
+                                            <input data-choice="no" class="checkbox" type="radio" name="agreement" onchange="MainManager.choiceApplication('no')">
                                             <span class="checkbox-label-text">
                                                 на дату подачи настоящего заявления у меня отсутствует договор с другим
                                                 профессиональным участником рынка ценных бумаг на ведение индивидуального инвестиционного счета
                                             </span>
                                         </label>
                                         <label class="checkbox-label">
-                                            <input data-choice="yes" class="checkbox" type="radio" name="choice" onchange="MainManager.choiceApplication('yes')">
+                                            <input data-choice="yes" class="checkbox" type="radio" name="agreement" onchange="MainManager.choiceApplication('yes')">
                                             <span class="checkbox-label-text">
                                                 на дату подачи настоящего заявления у меня действует договор на ведение индивидуального инвестиционного счета
                                                 <div class="tool">
@@ -124,7 +125,7 @@
                                     <td class="label">Фамилия&nbsp;<span>*</span></td>
                                     <td>
                                         <div class="valid-box">
-                                            <input data-application-surname data-cirilica data-validate type="text">
+                                            <input data-application-surname data-cirilica data-validate type="text" name="surname">
                                         </div>
                                     </td>
                                 </tr>
@@ -132,7 +133,7 @@
                                     <td class="label">Имя&nbsp;<span>*</span></td>
                                     <td>
                                         <div class="valid-box">
-                                            <input data-application-name data-cirilica data-validate type="text">
+                                            <input data-application-name data-cirilica data-validate type="text" name="name">
                                         </div>
                                     </td>
                                 </tr>
@@ -140,7 +141,7 @@
                                     <td class="label">Отчество&nbsp;<span>*</span></td>
                                     <td>
                                         <div class="valid-box">
-                                            <input data-application-middlename data-cirilica data-validate type="text">
+                                            <input data-application-middlename data-cirilica data-validate type="text" name="middlename">
                                         </div>
                                     </td>
                                 </tr>
@@ -148,7 +149,7 @@
                                     <td class="label">E-mail&nbsp;<span>*</span></td>
                                     <td>
                                         <div class="valid-box">
-                                            <input data-application-mail data-mail data-validate type="text">
+                                            <input data-application-mail data-mail data-validate type="text" name="mail">
                                         </div>
                                     </td>
                                 </tr>
@@ -156,7 +157,7 @@
                                     <td class="label">Мобильный телефон&nbsp;<span>*</span></td>
                                     <td>
                                         <div class="valid-box">
-                                            <input data-application-phone data-phone type="text" data-validate placeholder="+7 (  ·  ·  ·  )  ·  ·  ·  –  ·  ·  –  ·  ·">
+                                            <input data-application-phone data-phone type="text" data-validate placeholder="+7 (  ·  ·  ·  )  ·  ·  ·  –  ·  ·  –  ·  ·" name="phone">
                                         </div>
                                     </td>
                                 </tr>
@@ -164,7 +165,7 @@
                                     <td class="label">Серия и № паспорта&nbsp;<span>*</span></td>
                                     <td>
                                         <div class="valid-box">
-                                            <input data-series type="text" data-validate>
+                                            <input data-series type="text" data-validate name="series">
                                         </div>
                                     </td>
                                 </tr>
@@ -172,7 +173,7 @@
                                     <td class="label">Кем выдан паспорт&nbsp;<span>*</span></td>
                                     <td>
                                         <div class="valid-box">
-                                            <input data-issued data-all type="text" data-validate>
+                                            <input data-issued data-all type="text" data-validate name="issued">
                                         </div>
                                     </td>
                                 </tr>
@@ -180,14 +181,14 @@
                                     <td class="label">Дата выдачи&nbsp;<span>*</span></td>
                                     <td>
                                         <div class="valid-box select-date">
-                                            <select data-day name="" form="application">
+                                            <select data-day name="issueday" form="application">
                                                 <option value="01" selected>01</option>
 
                                             </select>
-                                            <select data-month name="" form="application">
+                                            <select data-month name="issuemonth" form="application">
                                                 <option value="01" selected>01</option>
                                             </select>
-                                            <select data-year class="last" name="" form="application">
+                                            <select data-year class="last" name="issueyear" form="application">
                                                 <option value="2001" selected>2001</option>
                                             </select>
                                         </div>
@@ -197,7 +198,7 @@
                                     <td class="label">Код подразделения&nbsp;<span>*</span></td>
                                     <td>
                                         <div class="valid-box">
-                                            <input data-code type="text" data-validate>
+                                            <input data-code type="text" data-validate name="code">
                                         </div>
                                     </td>
                                 </tr>
@@ -211,14 +212,14 @@
                                     <td class="label">ИНН <div class="hint-info">необязательное поле</div></td>
                                     <td>
                                         <div class="valid-box">
-                                            <input type="text" data-numeral>
+                                            <input type="text" data-numeral name="inn">
                                         </div>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td class="label"></td>
                                     <td>
-                                        <a href="#" class="btn big" onclick="MainManager.nextStep('application',1,event); return false">продолжить</button>
+                                        <a href="#" class="btn big" onclick="MainManager.nextStep('application',1); return false">продолжить</a>
                                     </td>
                                 </tr>
 
@@ -226,6 +227,108 @@
                         </div>
                         <div class="item _2">
                             <div class="step m-b20">Шаг 2 из 2</div>
+                            <table class="form">
+                                <tr>
+                                    <td colspan="2" class="sub">
+                                        Заполните информацию о своем адресе регистрации
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="label">Страна&nbsp;<span>*</span></td>
+                                    <td>
+                                        <div class="valid-box">
+                                            <input data-application-country data-cirilica data-validate type="text" name="country">
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="label">Область</td>
+                                    <td>
+                                        <div class="valid-box">
+                                            <input type="text" name="region">
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="label">Район</td>
+                                    <td>
+                                        <div class="valid-box">
+                                            <input type="text" name="district">
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="label">Город&nbsp;<span>*</span></td>
+                                    <td>
+                                        <div class="valid-box">
+                                            <input data-application-city data-cirilica data-validate type="text" name="city">
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="label">Поселение/Поселок/Деревня</td>
+                                    <td>
+                                        <div class="valid-box">
+                                            <input type="text" name="colony">
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="label">Индекс&nbsp;<span>*</span></td>
+                                    <td>
+                                        <div class="valid-box">
+                                            <input data-application-index data-all data-numeral data-validate type="text" name="index">
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="label">Улица&nbsp;<span>*</span></td>
+                                    <td>
+                                        <div class="valid-box">
+                                            <input data-application-street data-all data-validate type="text" name="street">
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="label">Дом&nbsp;<span>*</span> - Строение - Корпус</td>
+                                    <td>
+                                        <div class="set_3">
+                                            <div class="valid-box first">
+                                                <input data-application-house data-all data-validate type="text" name="house">
+                                            </div>
+                                            <div class="valid-box">
+                                                <input type="text" name="build">
+                                            </div>
+                                            <div class="valid-box">
+                                                <input type="text" name="corps">
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="label">Квартира&nbsp;<span>*</span></td>
+                                    <td>
+                                        <div class="valid-box">
+                                            <input data-application-apartment data-all data-validate type="text" name="room">
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="label"></td>
+                                    <td>
+                                        <a href="#" class="btn big" onclick="MainManager.submitApplication(); return false">отправить</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="label"></td>
+                                    <td>
+                                        <div class="processing">
+                                            Нажимая кнопку «продолжить», вы соглашаетесь <br>
+                                            на <a href="#" onclick="MainManager.showModal('limited', false); return false;">обработку</a> своих персональных данных
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
                         </div>
                     </div>
                 </form>
@@ -234,7 +337,109 @@
     </div>
 </div>
 
-        <div class="section _1 animatedParent animateOnce">
+    <!--modal documentation-->
+    <div class="modal" data-modal="documentation">
+    <div class="modal-content documentation">
+        <div class="wrap">
+            <div class="content">
+                <div class="close" onclick="MainManager.hideModal('documentation',false)"></div>
+                <h2 class="m-b20">Заявка отправлена</h2>
+                <div>Перечень документов, для просмотра онлайн или отправки на e-mai</div>
+                <ul class="list-doc">
+                    <li>
+                        «Соглашение от 02.09.2010 г. об электронном документообороте
+                        между Управляющей компанией и АКБ «Союз» (pdf , 1033 Кб, опубликовано 25.04.2012г. 10:49 )
+                        <a href="#" class="view"></a>
+                        <a href="#" class="send" onclick="MainManager.showModal('forward-doc',false)"></a>
+                    </li>
+                    <li>
+                        Соглашение от 16.01.2009 г. об электронном документообороте между Управляющей компанией
+                        и ООО «Универсальный брокер» (pdf , 1131 Кб, опубликовано 23.04.2012г. 6:13 )
+                        <a href="#" class="view"></a>
+                        <a href="#" class="send" onclick="MainManager.showModal('forward-doc',false)"></a>
+                    </li>
+                    <li>
+                        Договор № 8783486773 об использовании электронных документов
+                        от 22.11.2008 г. (pdf , 1203 Кб, опубликовано 12.01.2011г. 11:16 )
+                        <a href="#" class="view"></a>
+                        <a href="#" class="send" onclick="MainManager.showModal('forward-doc',false)"></a>
+                    </li>
+                    <li>
+                        Соглашение об обмене документами в электронном виде от 16.09.2008 г.
+                        со Сбербанком России (pdf , 566 Кб, опубликовано 25.02.2009г. 11:21 )
+                        <a href="#" class="view"></a>
+                        <a href="#" class="send" onclick="MainManager.showModal('forward-doc',false)"></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <!--modal forward doc-->
+    <div class="modal" data-modal="forward-doc">
+    <div class="modal-content forward">
+        <div class="wrap">
+            <div class="content">
+                <div class="close" onclick="MainManager.hideModal('forward-doc',true)"></div>
+                <h2 class="m-b20">Отправить документы на e-mail</h2>
+                <div class="m-b35">Ваши контактные данные</div>
+                <form action="" id="forward-doc">
+                    <table class="form">
+                        <tr>
+                            <td class="label">Электронная почта&nbsp;<span>*</span></td>
+                            <td>
+                                <div class="valid-box">
+                                    <input data-forward-doc-mail data-mail data-validate type="text" name="maildoc">
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="label"></td>
+                            <td>
+                                <a href="#" class="btn" onclick="MainManager.submitMailDocs(); return false">отправить<br>расчет</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="label"></td>
+                            <td>
+                                <div class="processing">
+                                    Согласен на <a href="#" onclick="MainManager.showModal('limited', false); return false;">обработку</a> персональных данных
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <!--modal limited-->
+    <div class="modal" data-modal="limited">
+        <div class="modal-content limited">
+            <div class="wrap">
+                <div class="content">
+                    <div class="close" onclick="MainManager.hideModal('limited',false)"></div>
+                    <h2 class="m-b20">Ограничение ответственности</h2>
+                    <div class="date">Данные на 27.06.2016</div>
+                    <div class="text">
+                        <p>Приведенный расчет — пример, как работает индивидуальный инвестиционный счет. Он носит исключительно информативный характер. </p>
+                        <p>Целевая доходность стратегии «Консервативная» — 13,5% годовых. Модельный портфель из государственных ценных бумаг (ОФЗ) Российской Федерации со сроками погашения, близкими к срокам реализации стратегии.</p>
+                        <p>Целевая доходность стратегии «Сбалансированная» — 17% годовых. Модельный портфель формируется из облигаций российских эмитентов.</p>
+                        <p>Целевая доходность стратегии «Агрессивная» — 21% годовых. Модельный портфель формируется из высоколиквидных акций российских эмитентов, таких как ПАО "ГМК "Норильский никель", ПАО «МТС», Банк ВТБ (ПАО), ОАО «Сургутнефтегаз».</p>
+                        <p>Итоговая сумма включает в себя сумму всех инвестированных средств и реинвестированных купонов, сумму налогового вычета (при условии уплаченного ранее НДФЛ) и сумму потенциального инвестиционного дохода, без учета комиссий и иных обязательных платежей.</p>
+                        <p>Указанная информация не гарантирует, что инвестиции окажутся надежными, а размеры возможных доходов или издержек, связанных с инвестициями, будут стабильными; не заявляет о возможных выгодах, связанных с методами управления активами, в том числе с указанными стратегиями; не является какого-либо рода офертой, не подразумевается в качестве оферты или приглашения делать оферты, не прогнозирует события, не является инвестиционным анализом или профессиональным советом, не имеет целью рекламу, размещение или публичное предложение любых ценных бумаг, продуктов или услуг.</p>
+                        <p>Результаты инвестирования в прошлом не определяют и не гарантируют доходность инвестирования в будущем. Стоимость активов зависит от ситуации на финансовых рынках — она может как увеличиваться, так и уменьшаться.</p>
+                        <p>Заключая договор доверительного управления, клиент должен внимательно ознакомиться с его содержанием и декларацией о рисках, приложенной к этому договору.</p>
+                        <p>Компания оставляет за собой право менять вышеуказанную информацию без предварительного уведомления.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section _1 animatedParent animateOnce">
             <div class="bg">
                 <div class="el"></div>
                 <img src="img/bg-s1.jpg" alt="">
@@ -261,7 +466,7 @@
                             или освобождение инвестиционного дохода от уплаты налога.</p>
                     </div>
 
-                    <button onclick="MainManager.showModal('application')" class="btn animated fadeInUpShort">
+                    <button onclick="MainManager.showModal('application', true)" class="btn animated fadeInUpShort">
                         отправить
                         <br>
                         заявку
@@ -279,8 +484,7 @@
             </div>
         </div>
 
-
-        <div class="section _2">
+    <div class="section _2">
 
             <div class="wrap">
                 <div class="content">
@@ -407,7 +611,7 @@
             </div>
         </div>
 
-        <div class="section _3">
+    <div class="section _3">
             <div class="wrap">
                 <div class="el_2"></div>
                 <div class="el_3"></div>
@@ -463,11 +667,11 @@
             </div>
         </div>
 
-        <div class="rel">
+    <div class="rel">
             <div class="wrap"><div class="el_2_1"></div></div>
         </div>
 
-        <div class="set-slide">
+    <div class="set-slide">
             <div class="wrap">
                 <div class="el_4"></div>
                 <div class="content">
@@ -503,7 +707,7 @@
             </div>
         </div>
 
-        <div class="section _4">
+    <div class="section _4">
             <div class="wrap">
                 <div class="content">
                     <div class="row animatedParent animateOnce m-b50">
@@ -552,7 +756,7 @@
             </div>
         </div>
 
-        <div class="section _5">
+    <div class="section _5">
             <div class="wrap">
                 <div class="content">
                     <div class="row animatedParent animateOnce">
@@ -612,7 +816,7 @@
             </div>
         </div>
 
-        <div class="section _6">
+    <div class="section _6">
             <div class="bg-bottom">
                 <div class="wrap">
                     <div class="el_5"></div>
@@ -761,7 +965,7 @@
             </div>
         </div>
 
-        <div class="section _7">
+    <div class="section _7">
             <div class="wrap">
                 <div class="content">
                     <div class="row animatedParent animateOnce m-b60">
@@ -824,7 +1028,7 @@
             </div>
         </div>
         
-        <div class="footer animatedParent animateOnce">
+    <div class="footer animatedParent animateOnce">
             <div class="wrap animated fadeInUpShort">
                 <div class="row">
                     <div class="col col_3">

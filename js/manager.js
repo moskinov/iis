@@ -5,8 +5,6 @@ function MainManager_f() {
   this.MAX = 400000;
   this.view = $('[data-example-view]');
   this.validate = $('[data-validate]');
-  this.applicationStep = $('[data-slide-application]');
-
   this.phone = $('[data-phone]');
   this.cirilica = $('[data-cirilica]');
   this.mail = $('[data-mail]');
@@ -97,7 +95,7 @@ function MainManager_f() {
       },200);
     });
 
-    //init cirilica value
+    //init passport value
     MainManager.series.mask('99 99 999 999');
     MainManager.series.on('focusout',function(){
       var el = $(this);
@@ -230,40 +228,31 @@ function MainManager_f() {
     var str = p2.toString();
     var res = str.replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, '$1 ');
     return res;
-  }
+  };
 
   this.validInit = function (input,valid,text) {
 
-
     MainManager.validClear(input);
 
-    //if((input.is('[data-user-middle-name]') && input.val() == '') || (input.is('[data-user-phone]') && input.val() == '')) {
+    if (valid.test(input.val()) && input.val() != '') {
 
-    //  return true;
+      MainManager.validClear(input);
 
-    //} else {
+      return true;
 
-      if (valid.test(input.val()) && input.val() != '') {
+    } else {
 
-        MainManager.validClear(input);
+      if(input.val() == '') {
 
-        return true;
+        MainManager.validError(input,'Поле не должно быть пустым');
 
       } else {
 
-        if(input.val() == '') {
-
-          MainManager.validError(input,'Поле не должно быть пустым');
-
-        } else {
-
-          MainManager.validError(input,text);
-
-        }
-
-        return false;
+        MainManager.validError(input,text);
       }
-    //}
+
+      return false;
+    }
   };
 
   this.validClear = function (input) {
@@ -271,6 +260,7 @@ function MainManager_f() {
     input.removeClass('field-has-error');
 
     if(input.nextAll().hasClass('textOfError')) {
+
       input.nextAll().remove();
     }
   };
@@ -323,7 +313,7 @@ function MainManager_f() {
 
   };
 
-  this.nextStep = function (form, page, e){
+  this.nextStep = function (form, page){
 
     if(page == 1) {
       var validate = [
@@ -376,116 +366,270 @@ function MainManager_f() {
       var choiceValue = $('[data-participant]').val().length;
 
       if(validDrag) {
+
         if(choice && !choiceYes || choiceYes && choiceValue) {
+
           for (var i in validate) {
 
             valid = MainManager.validInit($('['+validate[i].name+']'),validate[i].regexp,validate[i].text);
 
             if (!valid) {
+
               MainManager.scrollFieldError($('['+validate[i].name+']'));
+
               break;
             }
-
           }
         }
+
         if(!choice) {
+
           MainManager.choice.addClass('field-has-error');
+
           MainManager.scrollFieldError(MainManager.choice);
         }
 
         if(choiceYes && !choiceValue) {
+
           MainManager.validError($('[data-participant]'),'Поле не должно быть пустым');
+
           MainManager.scrollFieldError($('[data-participant]'));
         }
+
       } else {
+
         MainManager.scrollFieldError($('[data-value-application]'));
       }
-
 
       if (valid && validDrag && choice) {
 
         if(choiceYes) {
-          if(choiceValue) {
-            $('[data-step-form='+form+']').trigger('next.owl.carousel');
-          }
-        } else {
-          $('[data-step-form='+form+']').trigger('next.owl.carousel');
-        }
 
+          if(choiceValue) {
+
+            MainManager.slideNextView(form);
+          }
+
+        } else {
+
+          MainManager.slideNextView(form);
+        }
 
       } else {
 
         return false;
-
       }
+    }
+  };
 
+  this.slideNextView = function(el){
+
+    $('[data-step-form='+el+']').trigger('next.owl.carousel');
+
+    $('[data-modal='+el+']').animate({scrollTop: 0}, 500);
+  };
+
+  this.submitApplication = function() {
+    var validate = [
+      {
+        name: 'data-application-country',
+        regexp: MainManager.regexpCirilica,
+        text: 'Только буквы, пробел и дефис'
+      },
+      {
+        name: 'data-application-city',
+        regexp: MainManager.regexpAll,
+        text: 'Поле не должно быть пустым'
+      },
+      {
+        name: 'data-application-index',
+        regexp: MainManager.regexpAll,
+        text: 'Поле не должно быть пустым'
+      },
+      {
+        name: 'data-application-street',
+        regexp: MainManager.regexpAll,
+        text: 'Поле не должно быть пустым'
+      },
+      {
+        name: 'data-application-house',
+        regexp: MainManager.regexpAll,
+        text: 'Поле не должно быть пустым'
+      },
+      {
+        name: 'data-application-apartment',
+        regexp: MainManager.regexpAll,
+        text: 'Поле не должно быть пустым'
+      }
+    ];
+
+    var valid;
+
+    for (var i in validate) {
+
+      valid = MainManager.validInit($('['+validate[i].name+']'),validate[i].regexp,validate[i].text);
+
+      if (!valid) {
+
+        MainManager.scrollFieldError($('['+validate[i].name+']'));
+
+        break;
+      }
     }
 
+    if (valid) {
 
+      var data = MainManager.dataJSON($('#application'));
+
+      alert('Submit application form (data in console)');
+
+      console.log(data);
+
+      MainManager.hideModal('application', true);
+
+      MainManager.showModal('documentation',false);
+
+    } else {
+
+      return false;
+    }
+  };
+
+  this.submitMailDocs = function(){
+
+    var valid;
+
+    valid = MainManager.validInit($('[data-forward-doc-mail]'),MainManager.regexpMail,'E-mail введен некорректно');
+
+    if (valid) {
+
+      alert('Submit documentation mail');
+
+      MainManager.hideModal('forward-doc',true);
+
+    } else {
+
+      return false;
+    }
+  };
+
+  this.dataJSON = function (form) {
+
+    var o = {};
+
+    var a = form.serializeArray();
+
+    $.each(a, function () {
+
+      if (o[this.name]) {
+
+        if (!o[this.name].push) {
+
+          o[this.name] = [o[this.name]];
+
+        }
+
+        o[this.name].push(this.value || '');
+
+      } else {
+
+        o[this.name] = this.value || '';
+
+      }
+    });
+
+    return o;
   };
 
   this.scrollFieldError = function(field) {
 
     $('[data-modal]').animate({
-      scrollTop: field.offset().top + 400
-    }, 500);
+
+      scrollTop: field.offset().top + 350}, 500);
   };
 
-  this.showModal = function (modal) {
+  this.showModal = function (modal, step) {
+
     $('body').addClass('open');
+
     $('[data-modal='+modal+']').addClass('open');
-    var drag = $('[data-slider-'+modal+']');
 
-    if(modal == 'application') {
-      $('[data-step-form='+modal+']').owlCarousel({
-        items: 1,
-        nav: false,
-        mouseDrag: false,
-        touchDrag: false,
-        pullDrag: false,
-        autoHeight: true,
-        navRewind: false,
-        smartSpeed: 100,
-        navText: ['','']
-      });
+    if(step) {
 
+      if(modal == 'application') {
 
-      drag.nstSlider('refresh');
-      drag.nstSlider('set_position', MainManager.MIDDLE, MainManager.MAX);
-      MainManager.resizeModal(drag);
+        var drag = $('[data-slider-'+modal+']');
 
+        $('[data-step-form='+modal+']').owlCarousel({
+          items: 1,
+          nav: false,
+          autoHeight: true,
+          navRewind: false,
+          smartSpeed: 100,
+          navText: ['',''],
+          mouseDrag: false,
+          touchDrag: false,
+          pullDrag: false,
+          responsiveRefreshRate: 100,
+          responsiveBaseElement: $('[data-modal]')
+        });
+
+        drag.nstSlider('refresh');
+
+        drag.nstSlider('set_position', MainManager.MIDDLE, MainManager.MAX);
+
+        MainManager.resizeModal(drag);
+      }
     }
-
   };
 
   this.resizeModal = function(drag) {
+
     $(window).resize(function(){
+
       drag.nstSlider('refresh');
-    })
+
+    });
   };
 
-  this.hideModal = function (modal) {
-    $('body').removeClass('open');
+  this.hideModal = function (modal, clear) {
+
     $('[data-modal='+modal+']').removeClass('open');
-    MainManager.clearForm(modal);
+
+    var openL = $('.modal.open').length;
+
+    if(openL == 0) {
+
+      $('body').removeClass('open');
+    }
+
+    if(clear) {
+
+      MainManager.clearForm(modal);
+    }
   };
 
   this.clearForm = function (form) {
 
     $('[data-step-form='+form+']').trigger('destroy.owl.carousel');
+
     var formId = $('#'+form+'');
 
     formId.find('[data-validate]').each(function(){
-      MainManager.validClear($(this))
+
+      MainManager.validClear($(this));
+
     });
 
     if(form == 'application') {
+
       MainManager.choiceBlock.addClass('no');
+
       MainManager.choice.removeClass('field-has-error');
+
     }
 
     formId.trigger("reset");
-
   };
 
   this.choiceApplication = function (choice) {
@@ -493,13 +637,16 @@ function MainManager_f() {
     MainManager.choice.removeClass('field-has-error');
 
     if(choice == 'yes') {
+
       MainManager.choiceBlock.removeClass('no');
+
       $('[data-step-form="application"]').trigger('refresh.owl.carousel');
+
     } else {
+
       MainManager.choiceBlock.addClass('no');
+
       $('[data-step-form="application"]').trigger('refresh.owl.carousel');
     }
-
-
   }
 }
