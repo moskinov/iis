@@ -65,7 +65,7 @@
                                         <div class="valid-box">
                                             <div class="input slide">
 
-                                                <input data-numeral data-value-application type="text" value="" name="amount">
+                                                <input data-numeral data-value-application data-amount="application" type="text" value="" name="amount">
 
                                                 <div data-slider-application class="nstSlider"
                                                      data-range_min="50000"
@@ -85,14 +85,14 @@
                                 <tr>
                                     <td colspan="2">
                                         <label class="checkbox-label">
-                                            <input data-choice="no" class="checkbox" type="radio" name="agreement" onchange="MainManager.choiceApplication('no')">
+                                            <input data-choice-application="no" class="checkbox" type="radio" name="agreement" onchange="MainManager.choiceParticipant('no','application')">
                                             <span class="checkbox-label-text">
                                                 на дату подачи настоящего заявления у меня отсутствует договор с другим
                                                 профессиональным участником рынка ценных бумаг на ведение индивидуального инвестиционного счета
                                             </span>
                                         </label>
                                         <label class="checkbox-label">
-                                            <input data-choice="yes" class="checkbox" type="radio" name="agreement" onchange="MainManager.choiceApplication('yes')">
+                                            <input data-choice-application="yes" class="checkbox" type="radio" name="agreement" onchange="MainManager.choiceParticipant('yes','application')">
                                             <span class="checkbox-label-text">
                                                 на дату подачи настоящего заявления у меня действует договор на ведение индивидуального инвестиционного счета
                                                 <div class="tool">
@@ -104,12 +104,12 @@
                                         </label>
                                     </td>
                                 </tr>
-                                <tr data-choice-block class="no">
+                                <tr data-choice-block="application" class="no">
                                     <td class="label">Наименование <br> профессионального <br> участника&nbsp;<span>*</span></td>
                                     <td>
                                         <div class="valid-box">
                                             <div class="valid-box">
-                                                <input data-participant type="text" data-all data-validate>
+                                                <input data-participant="application" type="text" data-all data-validate>
                                             </div>
                                             <div class="hint">и он будет прекращен не позднее одного месяца с даты заключения Договора ИИС с Управляющей компанией</div>
                                         </div>
@@ -165,7 +165,7 @@
                                     <td class="label">Серия и № паспорта&nbsp;<span>*</span></td>
                                     <td>
                                         <div class="valid-box">
-                                            <input data-series type="text" data-validate name="series">
+                                            <input data-application-series data-series type="text" data-validate name="series">
                                         </div>
                                     </td>
                                 </tr>
@@ -173,7 +173,7 @@
                                     <td class="label">Кем выдан паспорт&nbsp;<span>*</span></td>
                                     <td>
                                         <div class="valid-box">
-                                            <input data-issued data-all type="text" data-validate name="issued">
+                                            <input data-application-issued data-all type="text" data-validate name="issued">
                                         </div>
                                     </td>
                                 </tr>
@@ -198,7 +198,7 @@
                                     <td class="label">Код подразделения&nbsp;<span>*</span></td>
                                     <td>
                                         <div class="valid-box">
-                                            <input data-code type="text" data-validate name="code">
+                                            <input data-application-code data-code type="text" data-validate name="code">
                                         </div>
                                     </td>
                                 </tr>
@@ -323,7 +323,7 @@
                                     <td class="label"></td>
                                     <td>
                                         <div class="processing">
-                                            Нажимая кнопку «продолжить», вы соглашаетесь <br>
+                                            Нажимая кнопку «отправить», вы соглашаетесь <br>
                                             на <a href="#" onclick="MainManager.showModal('limited', false); return false;">обработку</a> своих персональных данных
                                         </div>
                                     </td>
@@ -336,6 +336,362 @@
         </div>
     </div>
 </div>
+
+    <!--modal purchase-->
+    <div class="modal" data-modal="purchase">
+        <div class="modal-content">
+            <div class="wrap">
+                <div class="content">
+                    <div class="close" onclick="MainManager.hideModal('purchase', true)"></div>
+                    <h2 class="m-b20">Купить</h2>
+
+                    <form action="" id="purchase">
+                        <div class="purchase owl-carousel owl-theme" data-step-form="purchase">
+                            <div class="item _1">
+                                <div class="step m-b20">Шаг 1 из 4</div>
+                                <table class="form">
+                                    <tr>
+                                        <td class="label">Ваш инвестиционный продукт&nbsp;<span>*</span></td>
+                                        <td>
+                                            <div class="valid-box">
+                                                <select name="strategy" form="purchase">
+                                                    <option value="Агрессивная" selected>Агрессивная</option>
+                                                    <option value="Сбалансированная">Сбалансированная</option>
+                                                    <option value="Консервативная">Консервативная</option>
+                                                </select>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="label">Сумма инвестирования&nbsp;<span>*</span></td>
+                                        <td>
+                                            <div class="valid-box">
+                                                <div class="input slide">
+
+                                                    <input data-numeral data-value-purchase data-amount="purchase" type="text" value="" name="amount">
+
+                                                    <div data-slider-purchase class="nstSlider"
+                                                         data-range_min="50000"
+                                                         data-range_max="400000"
+                                                         data-cur_min="200000"
+                                                         data-cur_max="400000">
+                                                        <div class="bar"></div>
+                                                        <div class="leftGrip"></div>
+                                                    </div>
+
+                                                    <div class="rub"></div>
+
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2">
+                                            <label class="checkbox-label">
+                                                <input data-choice-purchase="no" class="checkbox" type="radio" name="agreement" onchange="MainManager.choiceParticipant('no','purchase')">
+                                            <span class="checkbox-label-text">
+                                                на дату подачи настоящего заявления у меня отсутствует договор с другим
+                                                профессиональным участником рынка ценных бумаг на ведение индивидуального инвестиционного счета
+                                            </span>
+                                            </label>
+                                            <label class="checkbox-label">
+                                                <input data-choice-purchase="yes" class="checkbox" type="radio" name="agreement" onchange="MainManager.choiceParticipant('yes','purchase')">
+                                            <span class="checkbox-label-text">
+                                                на дату подачи настоящего заявления у меня действует договор на ведение индивидуального инвестиционного счета
+                                                <div class="tool">
+                                                    <div class="tool-text">
+                                                        Необходимо в течение месяца расторгнуть договор c предыдущим профессиональным участником рынка ценных бумаг
+                                                    </div>
+                                                </div>
+                                            </span>
+                                            </label>
+                                        </td>
+                                    </tr>
+                                    <tr data-choice-block="purchase" class="no">
+                                        <td class="label">Наименование <br> профессионального <br> участника&nbsp;<span>*</span></td>
+                                        <td>
+                                            <div class="valid-box">
+                                                <div class="valid-box">
+                                                    <input data-participant="purchase" type="text" data-all data-validate>
+                                                </div>
+                                                <div class="hint">и он будет прекращен не позднее одного месяца с даты заключения Договора ИИС с Управляющей компанией</div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2" class="sub">
+                                            Просим Вас заполнить персональные данные <br>
+                                            для оформления заявки на присоединение к договору ДУ ИИС
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="label">Фамилия&nbsp;<span>*</span></td>
+                                        <td>
+                                            <div class="valid-box">
+                                                <input data-purchase-surname data-cirilica data-validate type="text" name="surname">
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="label">Имя&nbsp;<span>*</span></td>
+                                        <td>
+                                            <div class="valid-box">
+                                                <input data-purchase-name data-cirilica data-validate type="text" name="name">
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="label">Отчество&nbsp;<span>*</span></td>
+                                        <td>
+                                            <div class="valid-box">
+                                                <input data-purchase-middlename data-cirilica data-validate type="text" name="middlename">
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="label">E-mail&nbsp;<span>*</span></td>
+                                        <td>
+                                            <div class="valid-box">
+                                                <input data-purchase-mail data-mail data-validate type="text" name="mail">
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="label">Мобильный телефон&nbsp;<span>*</span></td>
+                                        <td>
+                                            <div class="valid-box">
+                                                <input data-purchase-phone data-phone type="text" data-validate placeholder="+7 (  ·  ·  ·  )  ·  ·  ·  –  ·  ·  –  ·  ·" name="phone">
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="label">Серия и № паспорта&nbsp;<span>*</span></td>
+                                        <td>
+                                            <div class="valid-box">
+                                                <input data-purchase-series data-series type="text" data-validate name="series">
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="label">Кем выдан паспорт&nbsp;<span>*</span></td>
+                                        <td>
+                                            <div class="valid-box">
+                                                <input data-purchase-issued data-all type="text" data-validate name="issued">
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="label">Дата выдачи&nbsp;<span>*</span></td>
+                                        <td>
+                                            <div class="valid-box select-date">
+                                                <select data-day name="issueday" form="purchase">
+                                                    <option value="01" selected>01</option>
+
+                                                </select>
+                                                <select data-month name="issuemonth" form="purchase">
+                                                    <option value="01" selected>01</option>
+                                                </select>
+                                                <select data-year class="last" name="issueyear" form="purchase">
+                                                    <option value="2001" selected>2001</option>
+                                                </select>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="label">Код подразделения&nbsp;<span>*</span></td>
+                                        <td>
+                                            <div class="valid-box">
+                                                <input data-purchase-code data-code type="text" data-validate name="code">
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2" class="sub last">
+                                            Забыли свой ИНН? <br>
+                                            Мы готовы помочь — <a href="https://service.nalog.ru/inn.html" target="_blank">узнайте ИНН на сайте ФНС</a> за 1 минуту!
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="label">ИНН <div class="hint-info">необязательное поле</div></td>
+                                        <td>
+                                            <div class="valid-box">
+                                                <input type="text" data-numeral name="inn">
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="label"></td>
+                                        <td>
+                                            <a href="#" class="btn big" onclick="MainManager.nextStep('purchase',1); return false">продолжить</a>
+                                        </td>
+                                    </tr>
+
+                                </table>
+                            </div>
+                            <div class="item _2">
+                                <div class="step m-b20">Шаг 2 из 4</div>
+                                <table class="form">
+                                    <tr>
+                                        <td colspan="2" class="sub">
+                                            Место жительства
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="label">Адрес&nbsp;<span>*</span></td>
+                                        <td>
+                                            <div class="valid-box">
+                                                <input data-address-first data-all data-validate type="text" name="address1">
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2">
+                                            <label class="checkbox-label">
+                                                <input disabled data-check-address class="checkbox" type="checkbox" name="generaladdress" onchange="MainManager.getAddress(this)">
+                                            <span class="checkbox-label-text">
+                                                Использовать указанный адрес для направления почтовой корреспонденции
+                                            </span>
+                                            </label>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2" class="sub">
+                                            Почтовый адрес
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="label">Адрес&nbsp;<span>*</span></td>
+                                        <td>
+                                            <div class="valid-box">
+                                                <input data-address-last data-all data-validate type="text" name="address2">
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2">
+                                            <label class="checkbox-label">
+                                                <input data-confirm-info class="checkbox" type="checkbox" name="confirminfo" onchange="MainManager.clearCheckBox(this)">
+                                            <span class="checkbox-label-text">
+                                                Подтверждаю правильность указанных моих персональных данных
+                                            </span>
+                                            </label>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="label"></td>
+                                        <td>
+                                            <a href="#" class="btn big" onclick="MainManager.nextStep('purchase',2); return false">отправить</a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="label"></td>
+                                        <td>
+                                            <div class="processing">
+                                                Нажимая кнопку «отправить», вы соглашаетесь <br>
+                                                на <a href="#" onclick="MainManager.showModal('limited', false); return false;">обработку</a> своих персональных данных
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div class="item _3">
+                                <div class="step m-b20">Шаг 3 из 4</div>
+                                <div class="wrap-step">
+                                    <table class="form">
+                                        <tr>
+                                            <td colspan="2" class="sub">
+                                                Продолжая оформление заявления о присоединении к договору доверительного управления,
+                                                Вы подтверждаете достоверность и актуальность сведений, указанных о Вас.
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2">
+                                                <label class="checkbox-label">
+                                                    <input data-act-agreement class="checkbox" type="checkbox" name="actagreement" onchange="MainManager.clearCheckBox(this)">
+                                                    <span class="checkbox-label-text">
+                                                        Я согласен (согласна) на присоединение <a href="#" onclick="MainManager.showModal('limited', false); return false;">к соглашению об электронном документообороте</a>
+                                                    </span>
+                                                </label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2" class="center">
+                                                <a href="#" data-btn-sms class="btn big" onclick="MainManager.getCode(); return false">Получить SMS-код</a>
+                                            </td>
+                                        </tr>
+
+                                        <tr data-sms-block class="no">
+                                            <td class="2">
+                                                <table class="form fixed">
+                                                    <tr>
+                                                        <td class="label">Введите полученный <br>вами SMS-код&nbsp;<span>*</span></td>
+                                                        <td>
+                                                            <div class="valid-box">
+                                                                <input data-sms type="text" data-all data-validate>
+                                                            </div>
+                                                        </td>
+                                                        <td class="get-sms">
+                                                            <a href="#">ПРИСЛАТЬ ПОВТОРНО</a>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td colspan="3" class="center last">
+                                                            <a href="#" class="btn big" onclick="MainManager.subscribeData('purchase'); return false;">ПОДПИСАТЬ</a>
+                                                            <div class="processing">
+                                                                Нажимая кнопку «подписать», вы соглашаетесь <br>
+                                                                на <a href="#" onclick="MainManager.showModal('limited', false); return false;">обработку</a> своих персональных данных
+                                                            </div>
+                                                            <div class="info">
+                                                                Подписывая заявку, я ФИО Клиента, в соответствии со Статьей 428 ГК РФ полностью и безоговорочно присоединяюсь к условиям и акцептую Договор доверительного управления индивидуального инвестиционного счета (далее - Договор) со всеми приложениями к нему. Я подтверждаю, что не являюсь иностранным публичным должностным лицом и ознакомлен с Проспектом Управляющего, Уведомлением о рисках, связанных с осуществлением операций с ценными бумагами, являющихся приложениями к Договору, осознаю и принимаю на себя риски, изложенные в Уведомлении о рисках, обязуюсь соблюдать все положения вышеуказанных
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+                                        </tr>
+
+
+
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="item _4">
+                                <div class="step m-b20">Шаг 4 из 4</div>
+                                <table class="form">
+                                    <tr>
+                                        <td colspan="2" class="sub">
+                                            Пополение счета
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2">
+                                            <label class="checkbox-label radio">
+                                                <input checked data-refill="transfer" class="checkbox" type="radio" name="refill">
+                                            <span class="checkbox-label-text">
+                                                Банковский перевод
+                                            </span>
+                                            </label>
+                                            <label class="checkbox-label radio">
+                                                <input data-refill="card" class="checkbox" type="radio" name="refill">
+                                            <span class="checkbox-label-text">
+                                                Банковская карта
+                                            </span>
+                                            </label>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2" class="center">
+                                            <a href="#" class="btn big" onclick="return false">пополнить</a>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!--modal documentation-->
     <div class="modal" data-modal="documentation">
@@ -472,11 +828,7 @@
                         заявку
                     </button>
 
-                    <!--<button onclick="MainManager.showModal('purchase')" class="btn big animated fadeInUpShort">
-                        купить
-                    </button>-->
-
-                    <button class="btn big animated fadeInUpShort">
+                    <button onclick="MainManager.showModal('purchase', true)" class="btn big animated fadeInUpShort">
                         купить
                     </button>
 

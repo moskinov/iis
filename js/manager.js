@@ -12,8 +12,15 @@ function MainManager_f() {
   this.series = $('[data-series]');
   this.code = $('[data-code]');
   this.all = $('[data-all]');
-  this.choice = $('[data-choice]');
-  this.choiceBlock = $('[data-choice-block]');
+  this.addressFirst = $('[data-address-first]');
+  this.addressLast = $('[data-address-last]');
+  this.addressCheck = $('[data-check-address]');
+  this.confirmInfo = $('[data-confirm-info]');
+  this.actAgreement = $('[data-act-agreement]');
+  this.smsBlock = $('[data-sms-block]');
+  this.smsBtn = $('[data-btn-sms]');
+  this.smsInput = $('[data-sms]');
+
 
   this.regexpCirilica = /^[ёЁа-яА-Яa-zA-Z\s\-]+$/;
   this.regexpMail = /^[-\w.]+@([A-z0-9][-A-z0-9]+\.)+[A-z]{2,4}$/;
@@ -58,19 +65,7 @@ function MainManager_f() {
       navText: ['','']
     });
 
-    ////init steps application form
-    //MainManager.applicationStep.owlCarousel({
-    //  items: 1,
-    //  nav: false,
-    //  mouseDrag: false,
-    //  autoHeight: true,
-    //  navRewind: false,
-    //  navText: ['','']
-    //});
-
-
-
-    //input check value
+    //input numeral value
     MainManager.numeral.keydown(function (e) {
       if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110, 190]) !== -1 || (e.keyCode === 65 && (e.ctrlKey === true || e.metaKey === true)) || (e.keyCode >= 35 && e.keyCode <= 40)) {
         return;
@@ -85,6 +80,9 @@ function MainManager_f() {
 
     //init application drug & value investment
     MainManager.initDrug('data-slider-application','data-value-application');
+
+    //init purchase drug & value investment
+    MainManager.initDrug('data-slider-purchase','data-value-purchase');
 
     //init phone value
     MainManager.phone.mask("+7 (999) 999-99-99");
@@ -126,6 +124,37 @@ function MainManager_f() {
     //init all value
     MainManager.all.on('focusout',function(){
       MainManager.validInit($(this),MainManager.regexpAll,'Поле не должно быть пустым');
+    });
+
+    //init value address first
+    MainManager.addressFirst.on("change paste keyup keydown", function(){
+
+      var val = this.value.length;
+
+      if(val != 0) {
+
+        MainManager.addressCheck.attr('disabled', false);
+
+        if(MainManager.addressCheck.is(':checked')) {
+
+          MainManager.addressLast.val(this.value);
+
+        } else if(MainManager.addressLast.val().length ==0) {
+
+          MainManager.addressLast.val('');
+        }
+
+      } else {
+
+        if(MainManager.addressCheck.is(':checked')) {
+
+          MainManager.addressLast.val('');
+        }
+
+        MainManager.addressCheck.attr('disabled', true);
+        MainManager.addressCheck.attr('checked', false);
+        MainManager.addressLast.attr('readonly', false);
+      }
     });
 
     //clear error on focus
@@ -318,52 +347,53 @@ function MainManager_f() {
     if(page == 1) {
       var validate = [
         {
-          name: 'data-application-surname',
+          name: 'data-'+form+'-surname',
           regexp: MainManager.regexpCirilica,
           text: 'Только буквы, пробел и дефис'
         },
         {
-          name: 'data-application-name',
+          name: 'data-'+form+'-name',
           regexp: MainManager.regexpCirilica,
           text: 'Только буквы, пробел и дефис'
         },
         {
-          name: 'data-application-middlename',
+          name: 'data-'+form+'-middlename',
           regexp: MainManager.regexpCirilica,
           text: 'Только буквы, пробел и дефис'
         },
         {
-          name: 'data-application-mail',
+          name: 'data-'+form+'-mail',
           regexp: MainManager.regexpMail,
           text: 'E-mail введен некорректно'
         },
         {
-          name: 'data-application-phone',
+          name: 'data-'+form+'-phone',
           regexp: MainManager.regexpAll,
           text: 'Поле не должно быть пустым'
         },
         {
-          name: 'data-series',
+          name: 'data-'+form+'-series',
           regexp: MainManager.regexpAll,
           text: 'Поле не должно быть пустым'
         },
         {
-          name: 'data-issued',
+          name: 'data-'+form+'-issued',
           regexp: MainManager.regexpAll,
           text: 'Поле не должно быть пустым'
         },
         {
-          name: 'data-code',
+          name: 'data-'+form+'-code',
           regexp: MainManager.regexpAll,
           text: 'Поле не должно быть пустым'
         }
       ];
 
       var valid;
-      var validDrag = !$('[data-value-application]').hasClass('error');
-      var choice = MainManager.choice.is(':checked');
-      var choiceYes = $('[data-choice="yes"]').is(':checked');
-      var choiceValue = $('[data-participant]').val().length;
+      var validDrag = !$('[data-amount='+form+']').hasClass('error');
+      var choice = $('[data-choice-'+form+']').is(':checked');
+      var choiceYes = $('[data-choice-'+form+'="yes"]').is(':checked');
+      var choiceValue = $('[data-participant='+form+']').val().length;
+
 
       if(validDrag) {
 
@@ -384,21 +414,21 @@ function MainManager_f() {
 
         if(!choice) {
 
-          MainManager.choice.addClass('field-has-error');
+          $('[data-choice-'+form+']').addClass('field-has-error');
 
-          MainManager.scrollFieldError(MainManager.choice);
+          MainManager.scrollFieldError($('[data-choice-'+form+']'));
         }
 
         if(choiceYes && !choiceValue) {
 
-          MainManager.validError($('[data-participant]'),'Поле не должно быть пустым');
+          MainManager.validError($('[data-participant='+form+']'),'Поле не должно быть пустым');
 
-          MainManager.scrollFieldError($('[data-participant]'));
+          MainManager.scrollFieldError($('[data-participant='+form+']'));
         }
 
       } else {
 
-        MainManager.scrollFieldError($('[data-value-application]'));
+        MainManager.scrollFieldError($('[data-amount='+form+']'));
       }
 
       if (valid && validDrag && choice) {
@@ -420,6 +450,55 @@ function MainManager_f() {
         return false;
       }
     }
+
+    if(form == 'purchase') {
+
+      if(page == 2) {
+
+        var confirm = MainManager.confirmInfo.is(':checked');
+
+        var validate2 = [
+          {
+            name: 'data-address-first',
+            regexp: MainManager.regexpAll,
+            text: 'Поле не должно быть пустым'
+          },
+          {
+            name: 'data-address-last',
+            regexp: MainManager.regexpAll,
+            text: 'Поле не должно быть пустым'
+          }
+        ];
+
+        var valid2;
+
+        for (var i2 in validate2) {
+
+          valid2 = MainManager.validInit($('['+validate2[i2].name+']'),validate2[i2].regexp,validate2[i2].text);
+
+          if (!valid2) {
+
+            MainManager.scrollFieldError($('['+validate2[i2].name+']'));
+
+            break;
+          }
+        }
+
+        if(valid2 && !confirm) {
+
+          MainManager.confirmInfo.addClass('field-has-error');
+
+          MainManager.scrollFieldError(MainManager.confirmInfo);
+        }
+
+        if(valid2 && confirm) {
+
+          MainManager.slideNextView(form);
+        }
+
+      }
+    }
+
   };
 
   this.slideNextView = function(el){
@@ -556,7 +635,7 @@ function MainManager_f() {
 
     if(step) {
 
-      if(modal == 'application') {
+      if(modal == 'application' || modal == 'purchase') {
 
         var drag = $('[data-slider-'+modal+']');
 
@@ -621,32 +700,98 @@ function MainManager_f() {
 
     });
 
-    if(form == 'application') {
+    if(form == 'application' || form == 'purchase') {
 
-      MainManager.choiceBlock.addClass('no');
+      $('[data-choice-block='+form+']').addClass('no');
 
-      MainManager.choice.removeClass('field-has-error');
+      $('[data-choice-'+form+']').removeClass('field-has-error');
+
+    }
+
+    if(form == 'purchase') {
+
+      MainManager.confirmInfo.removeClass('field-has-error');
+      MainManager.addressCheck.attr('disabled', true);
+      MainManager.actAgreement.removeClass('field-has-error');
+      MainManager.smsBlock.addClass('no');
+      MainManager.smsBtn.removeClass('disabled');
+      MainManager.actAgreement.attr('disabled', false);
 
     }
 
     formId.trigger("reset");
   };
 
-  this.choiceApplication = function (choice) {
+  this.choiceParticipant = function (choice,form) {
 
-    MainManager.choice.removeClass('field-has-error');
+    $('[data-choice-'+form+']').removeClass('field-has-error');
 
     if(choice == 'yes') {
 
-      MainManager.choiceBlock.removeClass('no');
+      $('[data-choice-block='+form+']').removeClass('no');
 
-      $('[data-step-form="application"]').trigger('refresh.owl.carousel');
+      $('[data-step-form='+form+']').trigger('refresh.owl.carousel');
 
     } else {
 
-      MainManager.choiceBlock.addClass('no');
+      $('[data-choice-block='+form+']').addClass('no');
 
-      $('[data-step-form="application"]').trigger('refresh.owl.carousel');
+      $('[data-step-form='+form+']').trigger('refresh.owl.carousel');
     }
-  }
+  };
+
+  this.getAddress = function(el) {
+
+    var getValue = $(el).is(':checked');
+    var oldValueLast = MainManager.addressLast.val();
+
+    if(getValue) {
+
+      MainManager.addressLast.val(MainManager.addressFirst.val());
+      MainManager.addressLast.attr('readonly', true);
+      MainManager.validClear(MainManager.addressLast);
+
+    } else {
+
+      MainManager.addressLast.val('');
+      MainManager.addressLast.attr('readonly', false);
+    }
+  };
+
+  this.clearCheckBox = function(el) {
+    $(el).removeClass('field-has-error')
+  };
+
+  this.getCode = function (){
+
+    var actAgreement = MainManager.actAgreement.is(':checked');
+
+    if(!actAgreement) {
+
+      MainManager.actAgreement.addClass('field-has-error');
+
+    } else {
+
+      alert('Get sms code');
+      MainManager.smsBlock.removeClass('no');
+      MainManager.smsBtn.addClass('disabled');
+      MainManager.actAgreement.attr('disabled', true);
+      $('[data-step-form="purchase"]').trigger('refresh.owl.carousel');
+    }
+  };
+
+  this.subscribeData = function(form){
+
+    var valid = MainManager.validInit(MainManager.smsInput,MainManager.regexpAll,'Поле не должно быть пустым');
+
+    if(valid) {
+
+      MainManager.slideNextView(form);
+
+    } else {
+
+      MainManager.validError(MainManager.smsInput,'Поле не должно быть пустым');
+    }
+  };
+
 }

@@ -733,6 +733,10 @@ button, a.btn {
   button.big, a.btn.big {
     padding-top: 21px;
     padding-bottom: 20px; }
+  button:disabled, button.disabled, a.btn:disabled, a.btn.disabled {
+    opacity: 0.5;
+    cursor: default;
+    pointer-events: none; }
 
 @-moz-keyframes moveTop {
   50% {

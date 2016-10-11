@@ -26,6 +26,8 @@ input[type="text"], input[type="password"], select {
   input[type="text"]:focus, input[type="password"]:focus, select:focus {
     background: #e31a51;
     color: #ffffff; }
+  input[type="text"]:read-only, input[type="password"]:read-only, select:read-only {
+    pointer-events: none; }
 
 select {
   font-family: 'pf_agora_sans_proregular','Helvetica',Arial,sans-serif;
@@ -103,6 +105,10 @@ select {
         margin-left: 5%; }
         .form tr td .set_3 .valid-box.first {
           margin-left: 0; }
+    .form tr td.center .btn {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; }
   .form .slide input {
     font-family: 'pf_agora_sans_proregular','Helvetica',Arial,sans-serif;
     color: #e31a51; }
@@ -148,6 +154,74 @@ select {
   width: 240px; }
 .application .item._2 .form tr td.sub {
   padding-bottom: 36px; }
+
+.purchase .item._1 .form tr td.label {
+  width: 240px; }
+.purchase .item._2 .form tr td .sub {
+  padding-bottom: 16px; }
+.purchase .item._2 .form tr td .checkbox-label-text {
+  padding-top: 10px; }
+.purchase .item._3 .wrap-step {
+  padding-right: 20%; }
+.purchase .item._3 .checkbox-label {
+  margin-right: 0; }
+  .purchase .item._3 .checkbox-label .checkbox-label-text {
+    padding-top: 10px;
+    padding-right: 0; }
+.purchase .item._4 .form {
+  width: 100%; }
+.purchase .item._4 .form tr td .checkbox-label {
+  margin-right: 0;
+  margin-bottom: 15px;
+  margin-top: 0;
+  padding-left: 50px;
+  display: block;
+  width: 330px; }
+  .purchase .item._4 .form tr td .checkbox-label .checkbox-label-text {
+    padding-left: 60px;
+    font-size: 20px;
+    line-height: 30px;
+    padding-right: 0; }
+    .purchase .item._4 .form tr td .checkbox-label .checkbox-label-text:before {
+      -webkit-border-radius: 15px;
+      -moz-border-radius: 15px;
+      -ms-border-radius: 15px;
+      border-radius: 15px;
+      width: 28px;
+      height: 28px;
+      top: -1px; }
+  .purchase .item._4 .form tr td .checkbox-label .checkbox:checked + .checkbox-label-text:before {
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAOCAMAAAAolt3jAAAASFBMVEXjGlHjGlHjGlHjGlHjGlHjGlHjGlHjGlHjGlHjGlHjGlHjGlHjGlHjGlHjGlHjGlHjGlHjGlHjGlHjGlHjGlHjGlHjGlHjGlEkZ821AAAAF3RSTlMAFBUWU1SCg4bO0NHS0/Dx8vP0+Pn6/k7NJGQAAABVSURBVHjaXc9BEoAgCEBRTDMzC4vS+980QhfS370ZRgE4ExJR9AYkd1QJnajUXmFP2MGhBV+HAsSRCWjkrXnq4e3/lNUf6TW4OTdlVjthf651+U54AU3HDPIC54SxAAAAAElFTkSuQmCC);
+    background-position: 7px 7px; }
+.purchase .item._4 .form tr td.sub {
+  padding-bottom: 40px; }
+.purchase .item._4 .form tr td.center .btn {
+  position: relative;
+  left: -9%;
+  margin-top: 25px; }
+.purchase .form.fixed {
+  width: 100%;
+  table-layout: fixed; }
+  .purchase .form.fixed tr td.label {
+    padding-right: 20px;
+    padding-top: 0; }
+  .purchase .form.fixed tr td .valid-box {
+    width: 180px !important;
+    margin: auto; }
+  .purchase .form.fixed tr td.get-sms {
+    padding-top: 15px;
+    text-align: center; }
+  .purchase .form.fixed tr td.last {
+    padding-bottom: 0; }
+    .purchase .form.fixed tr td.last .btn {
+      margin-top: 0; }
+    .purchase .form.fixed tr td.last .processing {
+      text-align: center;
+      padding-top: 16px; }
+    .purchase .form.fixed tr td.last .info {
+      font-size: 14px;
+      line-height: 16px;
+      padding-top: 40px; }
 
 .checkbox-label {
   display: inline-block;
@@ -219,6 +293,14 @@ select {
   z-index: 5; }
 .checkbox-label .checkbox.field-has-error + .checkbox-label-text:before {
   border: 1px solid #e31a51; }
+.checkbox-label .checkbox:disabled + .checkbox-label-text {
+  cursor: default;
+  opacity: 0.5;
+  pointer-events: none; }
+  .checkbox-label .checkbox:disabled + .checkbox-label-text:before {
+    cursor: default; }
+  .checkbox-label .checkbox:disabled + .checkbox-label-text a {
+    cursor: default; }
 
 .checkbox-label .checkbox:checked + .checkbox-label-text:before {
   background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABcAAAAPCAMAAAA4caRkAAAA3lBMVEXjGlHjGlHjGlHjGlHjGlHjGlHjGlHjGlHjGlHjGlHjGlHjGlHjGlHjGlHjGlHjGlHjGlHjGlHjGlHjGlHjGlHjGlHjGlHjGlHjGlHjGlHjGlHjGlHjGlHjGlHjGlHjGlHjGlHjGlHjGlHjGlHjGlHjGlHjGlHjGlHjGlHjGlHjGlHjGlHjGlHjGlHjGlHjGlHjGlHjGlHjGlHjGlHjGlHjGlHjGlHjGlHjGlHjGlHjGlHjGlHjGlHjGlHjGlHjGlHjGlHjGlHjGlHjGlHjGlHjGlHjGlHjGlHjGlHjGlGSpmIkAAAASXRSTlMAAQMGCQoLDRATFBYYGRwdICYpMDIzNTg7PD9AREVITlJZYGZrcH2JlKKrsbW3vMLIzdHV1tjZ3uHm6uzt7/Dx8/T19vf5+/z+oHvSVQAAAItJREFUeAFjwAaYNJWwCTNreWpgE9b2VGfEFGbR9VTDoppVz0MVRLMJoQiz67srgxk61iJIwhwGbooQlpiNrRhcmNPQVQHGFrayk4AyuY1c5RF6hSwdpMAMXhMXOWS7BC2cZIAUv5mTLKrbBMyd5YCEozS6o/lMXVUs7CUxfcNj7Gknji2suPREUfgAc2kNaR0MCrMAAAAASUVORK5CYII=); }

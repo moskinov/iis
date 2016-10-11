@@ -863,6 +863,11 @@ button,a.btn {
     padding-top: 21px;
     padding-bottom: 20px;
   }
+  &:disabled,&.disabled {
+    opacity: 0.5;
+    cursor: default;
+    pointer-events: none;
+  }
 }
 
 @-moz-keyframes moveTop {
