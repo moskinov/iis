@@ -120,6 +120,40 @@
 
   }
 
+  .section._1_1 .button-set .btn {
+    display: block;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    margin-bottom: 30px;
+  }
+
+  .counter-box {
+    padding-right: 0;
+    padding-bottom: 200px;
+    .diagram {
+      right: -120px;
+      left: 0;
+      margin: auto;
+      &.original {
+        right: 0;
+        left: -120px;
+      }
+    }
+  }
+
+  .section._3_1 .col_3 {
+    float: none;
+    margin-left: 0;
+    width: 100%;
+    margin-bottom: 30px;
+    text-align: center;
+  }
+  .type-list .col .year .prof {
+    top: -15px;
+  }
+  .section._5 .list-st .col a.btn.w {
+    right: -77px;
+  }
 }
 @media screen and (max-width: 740px) {
   .section._1 .bg {
@@ -242,9 +276,87 @@
   .purchase .form.fixed tr td.get-sms a {
     font-size: 10px;
   }
+  .section._1_1 h2 {
+    padding-top: 0;
+  }
+  .section._1_1 .date {
+    text-align: center;
+  }
+  .section._4_2 h2 {
+    padding-top: 0;
+  }
+  .type-slider {
+    .intro, p {
+      margin: 0 0 20px 0;
+    }
+    .col_2._g {
+      float: none;
+      margin-left: 0;
+      width: 100%;
+      text-align: center;
+    }
+    .img .col {
+      background-position: center top;
+    }
+  }
+  .type-list .line {
+    display: none;
+  }
+  .section._5._5_2 h2 {
+    padding-top: 0;
+  }
+  .section._5._5_2 .text {
+    text-align: center;
+  }
+  .section._5 .list-st {
+    padding-right: 0;
+    padding-top: 0;
+    .col {
+      float: none;
+      width: 100%;
+      margin-left: 0;
+      text-align: center;
+      .abs {
+        position: relative;
+        top: auto;
+        left: auto;
+        margin: 20px;
+      }
+      a.btn.w {
+        position: relative;
+        top: auto;
+        right: auto;
+        margin: 30px auto 0;
+      }
+    }
+  }
+  .section._6_2 h2 {
+    padding-top: 0;
+    padding-bottom: 30px;
+  }
+  .section._6_2 .text {
+    text-align: center;
+  }
+  .section._6_2 .btn {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .section._6_2 .btn.abs {
+    left: 0;
+    right: 0;
+  }
+  .modal-content.map .list-address {
+    width: 50%;
+  }
 }
 
 @media screen and (max-width: 600px) {
+
+  .type-list .col .year {
+    font-size: 21px;
+    line-height: 22px;
+  }
 
   .section._1 .intro b {
     left: 0;
@@ -326,5 +438,13 @@
   }
   .purchase .form.fixed tr td .valid-box {
     width: 100px !important;
+  }
+
+  .section._3 .wrap .el_3, .set-slide .wrap .el_4 {
+    display: none;
+  }
+  .section._4_2 .btn-set .btn {
+    width: 162px;
+    margin: 0;
   }
 }

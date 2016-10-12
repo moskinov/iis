@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Ингосстрах инвестиции — Индивидуальный инвестиционный счёт</title>
+    <title>Ингосстрах инвистиции — Индивидуальный инвестиционный счёт</title>
     <meta name="viewport" content="width=device-width">
 
     <link rel="icon" href="favicon.ico" type="image/x-icon">
@@ -771,6 +771,92 @@
     </div>
 </div>
 
+    <!--modal forward calculation-->
+    <div class="modal" data-modal="forward-calculation">
+        <div class="modal-content forward">
+            <div class="wrap">
+                <div class="content">
+                    <div class="close" onclick="MainManager.hideModal('forward-calculation',true)"></div>
+                    <h2 class="m-b20">Отправить расчет</h2>
+                    <div class="m-b35">Ваши контактные данные</div>
+                    <form action="" id="forward-calculation">
+                        <table class="form">
+                            <tr>
+                                <td class="label">Электронная почта&nbsp;<span>*</span></td>
+                                <td>
+                                    <div class="valid-box">
+                                        <input data-forward-calculation-mail data-mail data-validate type="text" name="mailcalculation">
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="label"></td>
+                                <td>
+                                    <a href="#" class="btn" onclick="MainManager.submitMailCalculation(); return false">отправить<br>расчет</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="label"></td>
+                                <td>
+                                    <div class="processing">
+                                        Согласен на <a href="#" onclick="MainManager.showModal('limited', false); return false;">обработку</a> персональных данных
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--modal order call-->
+    <div class="modal" data-modal="order-call">
+        <div class="modal-content forward">
+            <div class="wrap">
+                <div class="content">
+                    <div class="close" onclick="MainManager.hideModal('order-call',true)"></div>
+                    <h2 class="m-b20">Закажите звонок</h2>
+                    <div class="m-b35">Ваши контактные данные</div>
+                    <form action="" id="order-call">
+                        <table class="form">
+                            <tr>
+                                <td class="label">Представьтесь (ФИО)&nbsp;<span>*</span></td>
+                                <td>
+                                    <div class="valid-box">
+                                        <input data-order-call-name data-cirilica data-validate type="text" name="ordercallname">
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="label">Ваш телефон&nbsp;<span>*</span></td>
+                                <td>
+                                    <div class="valid-box">
+                                        <input data-order-call-phone data-phone data-validate type="text" name="ordercallphone">
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="label"></td>
+                                <td>
+                                    <a href="#" class="btn" onclick="MainManager.orderCall(); return false">Заказать<br>звонок</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="label"></td>
+                                <td>
+                                    <div class="processing">
+                                        Согласен на <a href="#" onclick="MainManager.showModal('limited', false); return false;">обработку</a> персональных данных
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!--modal limited-->
     <div class="modal" data-modal="limited">
         <div class="modal-content limited">
@@ -795,175 +881,396 @@
         </div>
     </div>
 
-    <div class="section _1 animatedParent animateOnce">
-            <div class="bg">
-                <div class="el"></div>
-                <img src="img/bg-s1.jpg" alt="">
-            </div>
+    <!--modal calculation-->
+    <div class="modal" data-modal="calculation">
+        <div class="modal-content limited">
             <div class="wrap">
                 <div class="content">
+                    <div class="close" onclick="MainManager.hideModal('calculation', false)"></div>
+                    <h2 class="m-b20">Расчет предоставляется исключительно в информационных целях и не является офертой</h2>
+                    <div class="date">Данные на 27.06.2016</div>
+                    <div class="text">
+                        <p>Приведенный расчет — пример, как работает индивидуальный расчетный счет. Он носит исключительно информативный характер.<p>
+                        <p>Целевая доходность стратегии «Консервативная» — 13,5% годовых. Модельный портфель из государственных ценных бумаг (ОФЗ) Российской Федерации
+                        со сроками погашения, близкими к срокам реализации стратегии.<p>
+                        <p>Целевая доходность стратегии «Сбалансированная» — 17% годовых. Модельный портфель формируется из облигаций российских эмитентов.<p>
+                        <p>Целевая доходность стратегии «Агрессивная» — 21% годовых. Модельный портфель формируется из высоколиквидных акций российских эмитентов,
+                        таких как ПАО &quot;ГМК &quot;Норильский никель&quot;, ПАО «МТС», Банк ВТБ (ПАО), ОАО «Сургутнефтегаз».<p>
+                        <p>Итоговая сумма включает в себя сумму всех инвестированных средств и реинвестированных купонов,
+                        сумму налогового вычета (при условии уплаченного ранее НДФЛ) и сумму потенциального инвестиционного дохода,
+                        без учета комиссий и иных обязательных платежей.<p>
+                        <p>Указанная информация не гарантирует, что инвестиции окажутся надежными, а размеры возможных доходов или издержек,
+                        связанных с инвестициями, будут стабильными;
+                        не заявляет о возможных выгодах, связанных с методами управления активами,
+                        в том числе с указанными стратегиями; не является какого-либо рода офертой,
+                        не подразумевается в качестве оферты или приглашения делать оферты, не прогнозирует события,
+                        не является инвестиционным анализом или профессиональным советом, не имеет целью рекламу,
+                        размещение или публичное предложение любых ценных бумаг, продуктов или услуг.<p>
+                        <p>Результаты инвестирования в прошлом не определяют и не гарантируют доходность инвестирования в будущем.
+                        Стоимость активов зависит от ситуации на финансовых рынках — она может как увеличиваться, так и уменьшаться.<p>
+                        <p>Заключая договор доверительного управления, клиент должен внимательно ознакомиться
+                        с его содержанием и декларацией о рисках, приложенной к этомудоговору.<p>
+                        <p>Компания оставляет за собой право менять вышеуказанную информацию без предварительного уведомления.<p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-                    <div class="animated fadeInDownShort">
-                        <a href="https://www.ingosinvest.ru/" class="logo"></a>
-                        <div class="intro">
-                            <p class="m-b10">
-                                АО УК «Ингосстрах-Инвестиции» <br>
-                                представляет новый продукт
-                            </p>
-                            <b>«Индивидуальный <br>
-                                <span>инвестиционный счет»</span></b>
+    <!--modal all rules-->
+    <div class="modal" data-modal="all-rules">
+        <div class="modal-content rules">
+            <div class="wrap">
+                <div class="content">
+                    <div class="close" onclick="MainManager.hideModal('all-rules', false)"></div>
+                    <h2 class="m-b40">Условия инвестирования <br> в инвестиционный счет</h2>
+                    <div class="row">
+                        <div class="col col_2">
+                            <ul>
+                                <li>
+                                    Минимальная сумма
+                                    первоначального вложения —
+                                    всего <span>50&nbsp;000</span>
+                                </li>
+                                <li>
+                                    Минимальный последующий взнос — всего от <span>5&nbsp;000</span>
+                                </li>
+                                <li>
+                                    Максимальная сумма
+                                    вложений в год — <span>400&nbsp;000</span>
+                                </li>
+                                <li>
+                                    Периодичность взносов
+                                    на ваш выбор
+                                </li>
+                            </ul>
                         </div>
+                        <div class="col col_2">
+                            <ul>
+                                <li>
+                                    Срок — от 3 лет
+                                </li>
+                                <li>
+                                    Два варианта налогового вычета на ваш выбор
+                                </li>
+                                <li>
+                                    Оформление договора
+                                    доверительного управления
+                                    в любом отделении
+                                    Банка Союз
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="clear"></div>
                     </div>
-
-                    <div class="animated fadeInLeft">
-                        <h1 class="m-b20">Инвестировать или хранить?</h1>
-                        <p class="m-b40">Откройте Индивидуальный Инвестиционный Счёт. <br>
-                            Получайте каждый год до 52 000 руб. от государства<br>
-                            или освобождение инвестиционного дохода от уплаты налога.</p>
                     </div>
-
-                    <button onclick="MainManager.showModal('application', true)" class="btn animated fadeInUpShort">
-                        отправить
-                        <br>
-                        заявку
-                    </button>
-
-                    <button onclick="MainManager.showModal('purchase', true)" class="btn big animated fadeInUpShort">
-                        купить
-                    </button>
-
                 </div>
             </div>
         </div>
 
-    <div class="section _2">
+    <!--modal all map-->
+    <div class="modal" data-modal="map">
+        <div class="modal-content map">
+            <div class="wrap">
+                <div class="content">
+                    <div class="close" onclick="MainManager.hideModal('map', false)"></div>
+                    <h2 class="m-b50">Офисы продаж</h2>
+                </div>
+            </div>
+            <div class="modal-map">
+                <script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?sid=a6egA8WI4U2c1rSwPJULqMxCDIk4pslC&amp;width=100%&amp;lang=ru_RU&amp;sourceType=constructor&amp;scroll=false"></script>
+            </div>
+            <div class="wrap">
+                <ul class="list-address">
+                    <li>
+                        <div class="name">
+                            Ингосстрах,<br>
+                            региональный<br>
+                            центр "Московия"
+                        </div>
+                        <div class="address">
+                            Голиковский пер., 7 <br>
+                            8 (495) 729-41-00
+                        </div>
+                    </li>
+                    <li>
+                        <div class="name">
+                            Ингосстрах
+                        </div>
+                        <div class="address">
+                            ул. Пятницкая, 12, стр. 2 <br>
+                            8 (495) 956-55-55 <br>
+                            Открыто до 20:00
+                        </div>
+                    </li>
+                    <li>
+                        <div class="name">
+                            Ингосстрах
+                        </div>
+                        <div class="address">
+                            Малая Ордынка ул., 40/2<br>
+                            8 (495) 956-55-55
+                        </div>
+                    </li>
+                    <li>
+                        <div class="name">
+                            ОСАО "Ингосстрах"
+                        </div>
+                        <div class="address">
+                            Валовая ул., 18 <br>
+                            8 (968) 749-99-59
+                        </div>
+                    </li>
+                </ul>
+
+                <ul class="list-address">
+                    <li>
+                        <div class="name">
+                            Ингосстрах
+                        </div>
+                        <div class="address">
+                            Павелецкая пл., 2 <br>
+                            8 (495) 956-55-55
+                        </div>
+                    </li>
+                    <li>
+                        <div class="name">
+                            Ингосстрах
+                        </div>
+                        <div class="address">
+                            Хамовнический Вал ул., 18 <br>
+                            8 (495) 995-13-75 <br>
+                            Открыто до 20:00
+                        </div>
+                    </li>
+                    <li>
+                        <div class="name">
+                            Ингосстрах ОСАО
+                        </div>
+                        <div class="address">
+                            Марксистская ул., 34 корпус 8 <br>
+                            8 (495) 911-61-52 <br>
+                            Открыто до 20:00
+                        </div>
+                    </li>
+                    <li>
+                        <div class="name">
+                            Ингосстрах
+                        </div>
+                        <div class="address">
+                            Краснопресненская наб., 12 <br>
+                            8 (495) 258-12-30 <br>
+                            Открыто до 18:00
+                        </div>
+                    </li>
+                </ul>
+
+                <ul class="list-address">
+                    <li>
+                        <div class="name">
+                            Ингосстрах
+                        </div>
+                        <div class="address">
+                            ул. Большая Тульская, 10. стр. 9 <br>
+                            8 (495) 956-55-55 <br>
+                            Открыто до 20:00
+                        </div>
+                    </li>
+                    <li>
+                        <div class="name">
+                            Ингосстрах ОСАО
+                        </div>
+                        <div class="address">
+                            ул. Сергия Радонежского, 6 <br>
+                            8 (495) 671-41-61 <br>
+                            Открыто до 20:00
+                        </div>
+                    </li>
+                    <li>
+                        <div class="name">
+                            Ингосстрах СПАО
+                        </div>
+                        <div class="address">
+                            ул. Климашкина, 21 <br>
+                            8 (495) 730-56-07 <br>
+                            Открыто до 20:00
+                        </div>
+                    </li>
+                    <li>
+                        <div class="name">
+                            Ингосстрах
+                        </div>
+                        <div class="address">
+                            Долгоруковская ул., 34 <br>
+                            8 (495) 661-45-01 <br>
+                            Открыто до 20:00
+                        </div>
+                    </li>
+                </ul>
+
+                <ul class="list-address">
+                    <li>
+                        <div class="name">
+                            Ингосстрах ОСАО
+                        </div>
+                        <div class="address">
+                            Кутузовский просп., 33 <br>
+                            8 (495) 956-55-55 <br>
+                            Открыто до 20:00
+                        </div>
+                    </li>
+                    <li>
+                        <div class="name">
+                            Ингосстрах ОСАО
+                        </div>
+                        <div class="address">
+                            Лесная ул., 41 <br>
+                            8 (495) 232-32-11 <br>
+                            Открыто до 20:00
+                        </div>
+                    </li>
+                    <li>
+                        <div class="name">
+                            Ингосстрах
+                        </div>
+                        <div class="address">
+                            Хамовнический Вал ул., 18 <br>
+                            8 (495) 995-13-75 <br>
+                            Открыто до 20:00
+                        </div>
+                    </li>
+                    <li>
+                        <div class="name">
+                            Ингосстрах ОСАО
+                        </div>
+                        <div class="address">
+                            Марксистская ул., 34 корпус 8 <br>
+                            8 (495) 911-61-52 <br>
+                            Открыто до 20:00
+                        </div>
+                    </li>
+                </ul>
+
+                <div class="clear"></div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="section _1_1 animatedParent animateOnce">
 
             <div class="wrap">
                 <div class="content">
-                    <div class="row m-b90 animatedParent animateOnce">
+
+                    <div class="row m-b50">
                         <div class="col left">
                             <a href="https://www.ingosinvest.ru/" class="logo animated fadeInDownShort"></a>
                         </div>
                         <div class="col right animated fadeInRight">
-                            <h2 class="m-b30">Что такое ИИС?</h2>
-                            <p>
-                                ИИС — это Индивидуальный Инвестиционный Счёт, который открывается управляющей компанией на основании договора доверительного управления, имеет особый режим налогообложения и установленный минимальный срок действия 3 года.
-                            </p>
+                            <h2>Агрессивная стратегия</h2>
+                            <div class="date">РАСЧЕТ ДОХОДНОСТИ С 01.01.2016 ПО 31.07.2016</div>
                         </div>
                         <div class="clear"></div>
                     </div>
 
-                    <div class="row animatedParent animateOnce">
-                        <div class="col left animated fadeInUpShort">
-                            <h4 class="_b">Как <br>это работает?</h4>
-                        </div>
-                        <div class="col right animated fadeInUpShort">
-                            <div class="info-set first">
-                                <div class="col_t">
-                                    <img src="img/1.png" alt="">
-                                    <p>
-                                        Физическое лицо,
-                                        налоговый
-                                        резидент РФ
-                                    </p>
+                    <div class="animatedParent animateOnce">
+                        <div class="set-slide animated fadeInUpShort">
+                            <div class="ui-slide">
+                                <div class="text first">Вложить</div>
+
+                                <div class="input slide">
+
+                                    <input data-numeral data-value-page type="text" value="">
+
+                                    <div data-slider-page class="nstSlider"
+                                         data-range_min="50000"
+                                         data-range_max="400000"
+                                         data-cur_min="200000"
+                                         data-cur_max="400000">
+                                        <div class="bar"><div class="i"></div></div>
+                                        <div class="leftGrip"></div>
+                                    </div>
+
+                                    <div class="rub"></div>
+
                                 </div>
-                                <div class="col_t">
-                                    <img src="img/2.png" alt="">
-                                    <p class="_l">
-                                        Открывает <br>
-                                        ИИС в УК
-                                    </p>
-                                </div>
-                                <div class="col_t">
-                                    <img src="img/3.png" alt="">
-                                    <p>
-                                        На сумму не более
-                                        400 000 рублей
-                                        в год
-                                    </p>
-                                </div>
-                                <div class="col_t">
-                                    <img src="img/4.png" alt="">
-                                    <p>
-                                        Которая может
-                                        инвестироваться
-                                        в инструменты
-                                        фондового рынка
-                                    </p>
-                                </div>
-                                <div class="col_t last">
-                                    <img src="img/5.png" alt="">
-                                    <p>
-                                        И получает ежегодно
-                                        от государства уплаченный
-                                        НДФЛ в размере 13%
-                                        от внесённой суммы или
-                                        инвестиционный доход
-                                        через 3 года
-                                    </p>
-                                </div>
+
+                                <div class="text last">на 1 год</div>
+
                                 <div class="clear"></div>
                             </div>
                         </div>
+                        <div class="animated fadeInUpShort">
+                            <div class="counter-box" data-page-view data-percent="43">
+
+                                <div class="diagram">
+                                    <div data-h data-calc-profit class="span"></div>
+                                    <div data-val-profit class="count profit"></div>
+                                    <div data-val-count class="count"></div>
+                                </div>
+                                <div class="diagram original">
+                                    <div data-h data-calc-original class="span"></div>
+                                    <div data-val-count class="count"></div>
+                                </div>
+                                
+                                <table class="counter-data">
+                                    <tr>
+                                        <td class="name">Инвестиционный доход</td>
+                                        <td data-h class="percent"><i></i><span data-num-percent-orign></span>%</td>
+                                        <td data-h class="profit">
+                                            <div><span data-orign-profit></span></div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="name">Налоговый вычет</td>
+                                        <td data-h class="percent"><i></i><span>13</span>%</td>
+                                        <td data-h class="profit">
+                                            <div><span data-calc-tax></span></div>
+                                        </td>
+                                    </tr>
+                                    <tr class="last">
+                                        <td class="name">Финансовый результат</td>
+                                        <td data-h class="percent"><i></i>+<span data-num-percent-all></span>%</td>
+                                        <td data-h class="profit">
+                                            <div><span data-calc-profit></span></div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="button-set animated fadeInRightShort">
+                        <button onclick="MainManager.showModal('forward-calculation', false)" class="btn animated fadeInUpShort first">
+                            отправить расчет
+                            <br>
+                            по электронной почте
+                        </button>
+
+                        <button onclick="MainManager.showModal('order-call', false)" class="btn animated fadeInUpShort">
+                            закажите
+                            <br>
+                            звонок
+                        </button>
+
+                        <button onclick="MainManager.showModal('purchase', true)" class="btn big animated fadeInUpShort">
+                            купить
+                        </button>
+
                         <div class="clear"></div>
                     </div>
 
 
                 </div>
-            </div>
-            <div class="info-set sub">
-                <div class="wrap">
-                    <div class="content">
-                        <div class="row animatedParent animateOnce">
-                            <div class="col left animated fadeInUpShort">
-                                <h4 class="_r">Нельзя!</h4>
-                            </div>
-                            <div class="col right animated fadeInUpShort">
-                                <div class="info-set">
-                                    <div class="col_t">
-                                        <img src="img/6.png" alt="">
-                                        <p>
-                                            Открывать <br>
-                                            несколько ИИС
-                                        </p>
-                                    </div>
-                                    <div class="col_t">
-                                        <img src="img/7.png" alt="">
-                                        <p>
-                                            Вносить на ИИС <br>
-                                            ценные бумаги
-                                        </p>
-                                    </div>
-                                    <div class="col_t">
-                                        <img src="img/8.png" alt="">
-                                        <p>
-                                            Совмещать <br>
-                                            два типа вычета <br>
-                                            по ИИС
-                                        </p>
-                                    </div>
-                                    <div class="col_t last">
-                                        <img src="img/9.png" alt="">
-                                        <p>
-                                            Сальдировать финансовые
-                                            результаты от операций
-                                            по иным счетам и ИИС
-                                        </p>
-                                    </div>
-                                    <div class="clear"></div>
-                                </div>
-                            </div>
-                            <div class="clear"></div>
-                        </div>
 
-
-                    </div>
-
+                <div class="intro animated fadeInUpShort">
+                    Расчет предоставляется исключительно <a href="#" onclick="MainManager.showModal('calculation', false); return false;">в информационных целях</a> и не является офертой.
                 </div>
             </div>
         </div>
 
-    <div class="section _3">
+    <div class="section _3 _3_1">
             <div class="wrap">
                 <div class="el_2"></div>
                 <div class="el_3"></div>
@@ -973,49 +1280,45 @@
                             <a href="https://www.ingosinvest.ru/" class="logo animated fadeInDownShort"></a>
                         </div>
                         <div class="col right animated fadeInRight">
-                            <h2 class="move">3 основные стратегии по ИИС</h2>
+                            <h2 class="move">Особенности <br>агрессивной стратегии</h2>
                         </div>
                         <div class="clear"></div>
                     </div>
-
-                    <div class="row strategy animatedParent animateOnce" data-example-view>
-                        <div class="col col_3 animated fadeInUpShort">
-                            <div class="title">Агрессивная</div>
-
-                            <a href="aggressive.html" class="count _1">
-                                <div class="text">ожидаемая<br>доходность</div>
-                                <div class="percent">43<span>%</span></div>
-                                <div class="sum"><span data-strategy="43">0</span></div>
-                            </a>
-
-                            <a href="#">узнать больше</a>
-                        </div>
-                        <div class="col col_3 animated fadeInUpShort">
-                            <div class="title">Сбалансированная</div>
-
-                            <a href="#" class="count _2">
-                                <div class="text">ожидаемая<br>доходность</div>
-                                <div class="percent">27<span>%</span></div>
-                                <div class="sum"><span data-strategy="27">0</span></div>
-                            </a>
-
-                            <a href="#">узнать больше</a>
-                        </div>
-                        <div class="col col_3 animated fadeInUpShort">
-                            <div class="title">Консервативная</div>
-
-                            <a href="#" class="count _3">
-                                <div class="text">ожидаемая<br>доходность</div>
-                                <div class="percent">22<span>%</span></div>
-                                <div class="sum"><span data-strategy="22">0</span></div>
-                            </a>
-
-                            <a href="#">узнать больше</a>
-                        </div>
-                        <div class="clear"></div>
-                    </div>
-
                 </div>
+
+                <div class="row animatedParent animateOnce" >
+                    <div class="col col_3 animated fadeInUpShort">
+                        <div class="zag">
+                            Минимальная сумма <br>
+                            <span>50&nbsp;000</span>
+                        </div>
+                        <div class="text">
+                            Облигации федерального займа (ОФЗ). Денежные средства на расчетных счетах.
+                        </div>
+                    </div>
+                    <div class="col col_3 animated fadeInUpShort">
+                        <div class="zag">
+                            Риск-профиль <br>
+                            клиента
+                        </div>
+                        <div class="text">
+                            Предназначена для инвесторов, которые на горизонте 3-х и более лет ожидают получить
+                            доходность сопоставимую с доходностью от вложений в депозиты на аналогичном горизонте инвестирования и готовы принять риски государства.
+                        </div>
+                    </div>
+                    <div class="col col_3 animated fadeInUpShort">
+                        <div class="zag">
+                            Вознаграждение <br>
+                            управляющего
+                        </div>
+                        <div class="text">
+                            Вознаграждение за размещение (разовое) - 2%. <br>
+                            Вознаграждение за управление в годовых - 2%.
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+
             </div>
         </div>
 
@@ -1023,38 +1326,13 @@
             <div class="wrap"><div class="el_2_1"></div></div>
         </div>
 
-    <div class="set-slide main">
+    <div class="set-slide for-text animatedParent animateOnce">
             <div class="wrap">
                 <div class="el_4"></div>
-                <div class="content">
-                    <div class="ui-slide">
-
-                        <div class="text first">Вложить</div>
-
-                        <div class="input slide">
-
-                            <input data-numeral data-value-example type="text" value="">
-
-                            <div data-slider-example class="nstSlider"
-                                 data-range_min="50000"
-                                 data-range_max="400000"
-                                 data-cur_min="200000"
-                                 data-cur_max="400000">
-                                <div class="bar"></div>
-                                <div class="leftGrip"></div>
-                            </div>
-
-                            <div class="rub"></div>
-
-                        </div>
-
-                        <div class="text last">на 1 год</div>
-
-                        <div class="clear"></div>
-                        <div class="text-intro">
-                            Представленный расчет носит исключительно информативный характер и имеет своей целью наглядным образом показать работу в зависимости от выбранной стратегии АО УК «Ингосстрах-Инвестиции»
-                        </div>
-                    </div>
+                <div class="animated fadeInDownShort">
+                    Прогнозируемый прирост: до 76% за 3 года** ** Расчёт прироста активов основан на уровне ожидаемой доходности для данной стратегии (21% годовых),
+                    а также включает в себя финансовый результат от получения налогового вычета 13% за первый год инвестиций. ((21%+13%)+21%+21% = 76%).
+                    <div class="all-rules"><a href="#" onclick="MainManager.showModal('all-rules', false); return false;">Все условия</a></div>
                 </div>
             </div>
         </div>
@@ -1104,220 +1382,211 @@
                         </div>
                     </div>
 
+                    <button onclick="MainManager.showModal('order-call', false)" class="btn w">
+                        закажите
+                        <br>
+                        звонок
+                    </button>
+
                 </div>
             </div>
         </div>
 
-    <div class="section _5">
-            <div class="wrap">
-                <div class="content">
-                    <div class="row animatedParent animateOnce">
-                        <div class="col left">
-                            <a href="https://www.ingosinvest.ru/" class="logo animated fadeInDownShort"></a>
-                        </div>
-                        <div class="col right">
-                            <h2 class="animated fadeInRight">Как открыть счет?</h2>
-                        </div>
-                        <div class="clear"></div>
+    <div class="section _4_2">
+        <div class="wrap">
+            <div class="content">
+                <div class="row animatedParent animateOnce m-b30">
+                    <div class="col left">
+                        <a href="https://www.ingosinvest.ru/" class="logo animated fadeInDownShort"></a>
                     </div>
+                    <div class="col right">
+                        <h2 class="animated fadeInRight">Алгоритм получения налогово вычета</h2>
+                    </div>
+                    <div class="clear"></div>
                 </div>
+
                 <div class="animatedParent animateOnce">
-                    <div class="row open animated fadeInUpShort">
-                        <div class="col col_5 _1">
-                            <img src="img/10.png" alt="">
-                            <div class="text">
-                                Физическое лицо,
-                                налоговый резидент РФ
+
+                    <div class="btn-set">
+                        <button data-btn-list class="btn big active animated fadeInLeftShort" onclick="MainManager.listType('prev', this)">Тип А: вычет на взнос</button>
+                        <button data-btn-list class="btn big animated fadeInRightShort" onclick="MainManager.listType('next', this)">Тип В: вычет на доход</button>
+                    </div>
+
+                    <div data-type-slider class="owl-carousel owl-theme type-slider">
+
+                        <div class="item">
+
+                            <div class="row m-b35">
+                                <div class="col col_2 _g">
+                                    <div class="intro">
+                                        Больше подходит для инвесторов, имеющих официальный доход, с которого выплачивается НДФЛ
+                                    </div>
+                                    <p>
+                                        Ежегодный вычет по НДФЛ на сумму внесенных в отчетном году на ИИС средств.
+                                        Вычет осуществляется с облагаемого налогом дохода (например: по основному месту работы).
+                                    </p>
+                                    <p>
+                                        При ставке НДФЛ - 13% и сумме ежегодных вложений 400&nbsp;000&nbsp;рублей, налоговый вычет составит 52&nbsp;000&nbsp;рублей.
+                                    </p>
+                                </div>
+                                <div class="col col_2 img _g">
+                                    <div class="row">
+                                        <div class="col col_2 _1">Открыть ИИС в ОАО УК "Ингосстрах-Инвестиции"</div>
+                                        <div class="col col_2 _2">Зачислить денежные средства на ИИС</div>
+                                        <div class="clear"></div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col col_2 _3">По истечении года заполнить и подать налоговую декларацию с указанием в ней суммы ввода на ИИС</div>
+                                        <div class="col col_2 _4">Написать заявление в налоговую инспекцию о получении вычета</div>
+                                        <div class="clear"></div>
+                                    </div>
+                                </div>
+                                <div class="clear"></div>
                             </div>
-                        </div>
-                        <div class="col col_5 _2">
-                            <img src="img/11.png" alt="">
-                            <div class="text _l">
-                                Открывает <br>
-                                ИИС в УК
+
+                            <div class="row type-list">
+                                <div class="line"></div>
+                                <div class="col col_2">
+                                    <div class="row">
+
+                                        <div class="col col_2">
+                                            <div class="year">
+                                                <span>2016</span>
+                                            </div>
+                                            <div class="text">До&nbsp;400&nbsp;тыс. рублей</div>
+                                        </div>
+                                        <div class="col col_2">
+                                            <div class="year">
+                                                <span>2017</span>
+                                                <div class="prof">+ 400 000 ₽</div>
+                                            </div>
+                                            <div class="text">До&nbsp;800&nbsp;тыс. рублей <br> Возврат до 52&nbsp;000&nbsp;руб. <br>(13% от суммы взноса в 2016 году) +&nbsp;Финансовый результат от операций по ИИС</div>
+                                        </div>
+
+                                        <div class="clear"></div>
+                                    </div>
+                                </div>
+                                <div class="col col_2">
+                                    <div class="row">
+
+                                        <div class="col col_2">
+                                            <div class="year">
+                                                <span>2018</span>
+                                                <div class="prof">+ 400 000 ₽</div>
+                                            </div>
+                                            <div class="text">До 1&nbsp;200&nbsp;тыс. рублей <br>Возврат до 52&nbsp;000&nbsp;руб. <br>(13% от суммы в 2017 году) +&nbsp;Финансовый результат от операций по ИИС</div>
+                                        </div>
+                                        <div class="col col_2">
+                                            <div class="year">
+                                                <span>2019 и далее</span>
+                                                <div class="prof">+ 400 000 ₽</div>
+                                            </div>
+                                            <div class="text">До&nbsp;1&nbsp;600&nbsp;тыс. рублей<br> Возврат до 52&nbsp;000&nbsp;руб. <br>(13% от суммы взноса в 2018 году) +&nbsp;Финансовый результат от операций по ИИС</div>
+                                        </div>
+
+                                        <div class="clear"></div>
+                                    </div>
+                                </div>
+                                <div class="clear"></div>
                             </div>
+
                         </div>
-                        <div class="col col_5 _3">
-                            <img src="img/12.png" alt="">
-                            <div class="text">
-                                На суммы не более
-                                400&nbsp;000 рублей в год
+
+                        <div class="item">
+
+                            <div class="row m-b40">
+                                <div class="col col_2 _g">
+                                    <div class="intro">
+                                        Больше подходит для активных инвесторов, ориентированных на долгосрочные вложения или не имеющих доходов, облагаемых НДФЛ
+                                    </div>
+                                    <p>
+                                        Налоговая льгота на доходы, полученные от операций по инвестиционному счету.
+                                    </p>
+                                    <p>
+                                        Сумма дохода будет освобождена от налогооблажения по истечении трех или более лет при закрытии ИИС.
+                                    </p>
+                                </div>
+                                <div class="col col_2 img _g">
+                                    <div class="row">
+                                        <div class="col col_2 _1">Открыть ИИС в ОАО УК "Ингосстрах-Инвестиции"</div>
+                                        <div class="col col_2 _2">Вывести денежные средства на ИИС</div>
+                                        <div class="clear"></div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col col_2 _3">По истечении трех и более лет получить в налоговой инспекции справку о том, что вы не использовали вычет типа А</div>
+                                        <div class="col col_2 _4">Со справкой из налоговой инспекции в ОАО УК "Ингосстрах-Инвестиции" вывести денежные средства без удержания НДФЛ</div>
+                                        <div class="clear"></div>
+                                    </div>
+                                </div>
+                                <div class="clear"></div>
                             </div>
-                        </div>
-                        <div class="col col_5 _4">
-                            <img src="img/13.png" alt="">
-                            <div class="text">
-                                Которая может
-                                инвестироваться
-                                в любые инструменты
-                                фондового рынка
+
+                            <div class="row type-list">
+                                <div class="line"></div>
+                                <div class="col col_2">
+                                    <div class="row">
+
+                                        <div class="col col_2">
+                                            <div class="year">
+                                                <span>2016</span>
+                                            </div>
+                                            <div class="text">До&nbsp;400&nbsp;тыс. рублей</div>
+                                        </div>
+                                        <div class="col col_2">
+                                            <div class="year">
+                                                <span>2017</span>
+                                                <div class="prof">+ 400 000 ₽</div>
+                                            </div>
+                                            <div class="text">До&nbsp;800&nbsp;тыс. рублей<br>
+                                                +&nbsp;Финансовый результат от операций по ИИС</div>
+                                        </div>
+
+                                        <div class="clear"></div>
+                                    </div>
+                                </div>
+                                <div class="col col_2">
+                                    <div class="row">
+
+                                        <div class="col col_2">
+                                            <div class="year">
+                                                <span>2018</span>
+                                                <div class="prof">+ 400 000 ₽</div>
+                                            </div>
+                                            <div class="text">
+                                                До&nbsp;1&nbsp;200&nbsp;тыс. рублей<br>
+                                                +&nbsp;Финансовый результат от операций по ИИС
+                                            </div>
+                                        </div>
+                                        <div class="col col_2">
+                                            <div class="year">
+                                                <span>2019 и далее</span>
+                                                <div class="prof">+ 400 000 ₽</div>
+                                            </div>
+                                            <div class="text">
+                                                До&nbsp;1&nbsp;600&nbsp;тыс. рублей<br>
+                                                +&nbsp;Финансовый результат от операций по ИИС
+                                                +&nbsp;Освобождение от НДФЛ дохода от операций за весь срок действия ИИС
+                                            </div>
+                                        </div>
+
+                                        <div class="clear"></div>
+                                    </div>
+                                </div>
+                                <div class="clear"></div>
                             </div>
+
                         </div>
-                        <div class="col col_5 _5">
-                            <img src="img/14.png" alt="">
-                            <div class="text">
-                                Нологовые льготы
-                                на инвестируемые
-                                средства ежегодно или на доход
-                                через 3 года
-                            </div>
-                        </div>
+
                     </div>
                 </div>
 
+
             </div>
+
         </div>
+    </div>
 
-    <div class="section _6">
-            <div class="bg-bottom">
-                <div class="wrap">
-                    <div class="el_5"></div>
-                    <div class="el_6"></div>
-                </div>
-            </div>
-            <div class="wrap">
-                <div class="content">
-                    <div class="row animatedParent animateOnce">
-                        <div class="col left">
-                            <a href="https://www.ingosinvest.ru/" class="logo animated fadeInDownShort"></a>
-                        </div>
-                        <div class="col right">
-                            <h2 class="animated fadeInRight">Часто задаваемые вопросы</h2>
-                        </div>
-                        <div class="clear"></div>
-                    </div>
-                </div>
-
-                <div class="faq-slider-wr">
-                    <div data-faq-slider class="owl-carousel owl-theme faq-slider">
-                        <div class="item">
-                            <table>
-                                <tr class="first">
-                                    <td>Что такое ИИС?</td>
-                                    <td class="_l">На какой срок открывается ИИС?</td>
-                                </tr>
-                                <tr>
-                                    <td>ИИС – это индивидуальный инвестиционный счет, который открывается в рамках доверительного управления для инвестирования в ценные бумаги на срок не менее 3 лет, при этом сумма, вносимая на ИИС клиентом, не может превышать 400 тыс. рублей в год.</td>
-                                    <td class="_b">Открыть ИИС можно на любой срок (не менее 3 лет).</td>
-                                </tr>
-                            </table>
-                        </div>
-                        <div class="item">
-                            <table>
-                                <tr class="first">
-                                    <td>Какова минимальная сумма для открытия ИИС?</td>
-                                    <td class="_l">Сколько ИИС можно иметь одновременно?</td>
-                                </tr>
-                                <tr>
-                                    <td>От 50 тыс. руб.</td>
-                                    <td class="_b">Физическое лицо вправе иметь только один договор на ведение ИИС.</td>
-                                </tr>
-                            </table>
-                        </div>
-                        <div class="item">
-                            <table>
-                                <tr class="first">
-                                    <td>Может ли открыть ИИС нерезидент РФ?</td>
-                                    <td class="_l">Какую валюту можно вносить на ИИС?</td>
-                                </tr>
-                                <tr>
-                                    <td>Счет доступен физическим лицам-налоговым резидентам РФ.</td>
-                                    <td class="_b">Вносить на ИИС можно только рубли, максимальный взнос — 400 000 рублей в год.</td>
-                                </tr>
-                            </table>
-                        </div>
-                        <div class="item">
-                            <table>
-                                <tr class="first">
-                                    <td>Какие комиссии удерживает УК?</td>
-                                    <td class="_l">Кто может получать налоговый вычет?</td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        Консервативная стратегия: вознаграждение Управляющей компании составляет 1,5% годовых от средней стоимости активов.
-                                        <br>
-                                        Сбалансированная стратегия: Вознаграждение за размещение (разовое) - 2%. Вознаграждение за управление в годовых - 1,5%.
-                                        <br>
-                                        Агрессивная стратегия: Вознаграждение за размещение (разовое) - 2%. Вознаграждение за управление в годовых - 2%.
-                                        <br>
-                                        Консервативная: Вознаграждение за размещение (разовое) - 2%. Вознаграждение за управление в годовых - 1%.
-                                    </td>
-                                    <td class="_b">Физическое лицо, которое платит НДФЛ.</td>
-                                </tr>
-                            </table>
-                        </div>
-                        <div class="item">
-                            <table>
-                                <tr class="first">
-                                    <td>Какой тип вычета выбрать?</td>
-                                    <td class="_l">Какие потери будут при расторжении договора?</td>
-                                </tr>
-                                <tr>
-                                    <td>Вид налогового вычета вы выбираете самостоятельно в зависимости от личных целей.</td>
-                                    <td class="_b">
-                                        Потери зависят от срока существования ИИС до момента расторжения договора. Если срок – менее 3 лет, то теряются все налоговые бенефиты.
-                                        Т.е., если инвестор выбирал для себя вариант с налоговым вычетом в размере 13% от суммы,
-                                        внесенной на счет в налоговом периоде, то при расторжении до истечения 3х летнего срока с
-                                        момента открытия, ему придется уплатить государству всю возмещенную сумму.
-                                    </td>
-                                </tr>
-                            </table>
-                        </div>
-                        <div class="item">
-                            <table>
-                                <tr class="first">
-                                    <td>Чем отличается ИИС от договора ДУ <i>(без открытия индивидуального инвестиционного счета)?</i></td>
-                                    <td class="_l">Какие активы можно покупать через ИИС?</td>
-                                </tr>
-                                <tr>
-                                    <td>Прежде всего, возможностью получить налоговый вычет. Передавая деньги в договор ДУ (без открытия индивидуального инвестиционного счета), нельзя получить налоговый вычет.</td>
-                                    <td class="_b">Через ИИС можно покупать любые финансовые инструменты, обращающиеся на организованном рынке ценных бумаг.</td>
-                                </tr>
-                            </table>
-                        </div>
-                        <div class="item">
-                            <table>
-                                <tr class="first">
-                                    <td>Какая разница в доходах ИИС и депозитов?</td>
-                                    <td class="_l">Какие риски несет инвестор?</td>
-                                </tr>
-                                <tr>
-                                    <td>Доходность вложений в ИИС складывается из инвестиционного дохода, за минусом возможных налогов, в зависимости от выбранного инструмента, а также из получаемого 13%-го налогового вычета. Доходность депозита равна только проценту по депозиту.</td>
-                                    <td class="_b">Инвестирование в ценные бумаги связано с изменением стоимости ценных бумаг. Инвестор несет рыночные, кредитные, риски ликвидности. Полное описание рисков, связанных с инвестированием в ценные бумаги, предоставляется инвестору при подписании договора.</td>
-                                </tr>
-                            </table>
-                        </div>
-                        <div class="item">
-                            <table>
-                                <tr class="first">
-                                    <td>Может ли владелец ИИС влиять на инвестиционную стратегию управления?</td>
-                                    <td class="_l">В каких случаях возникает необходимость уплаты налога по счету ИИС?</td>
-                                </tr>
-                                <tr>
-                                    <td>Нет. Управлением занимается управляющая компания, наполняет инвестиционный портфель ценными бумагами, исходя из текущей рыночной ситуации на момент перевода денежных средств по договору ИИС, согласно выбранной стратегии управления и инвестиционной декларации по договору ИИС.</td>
-                                    <td class="_b">Необходимость уплаты налога при совершении операций с ценными бумагами по договору ИИС возникает только при получении дохода от этих операций. Налоговым периодом является календарный год. Управляющая компания является налоговым агентом, рассчитывает и оплачивает 13% с полученного дохода, а также предоставляет клиентам справки по форме 2-НДФЛ.</td>
-                                </tr>
-                            </table>
-                        </div>
-                        <div class="item">
-                            <table>
-                                <tr class="first">
-                                    <td>Как происходит передача денежных средств на ИИС?</td>
-                                    <td class="_l cl"></td>
-                                </tr>
-                                <tr>
-                                    <td>Перевод денежных средств по договору ИИС необходимо осуществить банковским переводом через любой банк с банковского счета, открытого на Учредителя управления ИИС.</td>
-                                    <td class="_b"></td>
-                                </tr>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-
-    <div class="section _7">
+    <div class="section _5 _5_2">
             <div class="wrap">
                 <div class="content">
                     <div class="row animatedParent animateOnce m-b60">
@@ -1325,60 +1594,84 @@
                             <a href="https://www.ingosinvest.ru/" class="logo animated fadeInDownShort"></a>
                         </div>
                         <div class="col right">
-                            <h2 class="animated fadeInRight">Хотите мы Вам позвоним и всё раскажем про ИИС?</h2>
+                            <h2 class="animated fadeInRight">Альтернативные стратегии</h2>
+                            <div class="text animated fadeInRight">Рекомендуем вам обратить внимание на эти стратегии</div>
                         </div>
                         <div class="clear"></div>
                     </div>
-                    <div class="animatedParent animateOnce">
-                        <div class="row animated fadeInUpShort">
-                            <div class="col left">
-                                <div class="rul">
-                                    <div class="i"></div>
-                                    Предоставляя номер мобильного телефона, я подтверждаю достоверность всей указанной информации, а также подтверждаю, что являюсь владельцем указанного телефонного номера, выделенного в соответствии с договором об оказании услуг связи (абонентом). Настоящим даю согласие на получение информации в виде SMS-сообщений на указанный номер мобильного телефона, необходимой для завершения регистрации на сайте www.ingosinvest.ru
-                                </div>
+
+                    <div class="row animatedParent animateOnce list-st br">
+                        <div class="col col_2 animated fadeInLeftShort">
+                            <div class="name">
+                                Сбалансированная<br>
+                                инвестиционная стратегия
                             </div>
-                            <div class="col right">
-                                <form action="">
-                                    <table class="form">
-                                        <tr>
-                                            <td class="label">Имя&nbsp;<span>*</span></td>
-                                            <td>
-                                                <div class="valid-box">
-                                                    <input data-name data-cirilica data-validate type="text" name="">
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="label">Фамилия&nbsp;<span>*</span></td>
-                                            <td>
-                                                <div class="valid-box">
-                                                    <input data-surname data-cirilica data-validate type="text" name="">
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="label">Мобильный телефон&nbsp;<span>*</span></td>
-                                            <td>
-                                                <div class="valid-box">
-                                                    <input data-phone-contact type="text" data-phone data-validate name placeholder="+7 (  ·  ·  ·  )  ·  ·  ·  –  ·  ·  –  ·  ·">
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td></td>
-                                            <td>
-                                                <button class="btn" type="submit" onclick="return MainManager.submitCall();">заказать <br> звонок</button>
-                                            </td>
-                                        </tr>
-                                    </table>
-                                </form>
-                            </div>
-                            <div class="clear"></div>
                         </div>
+                        <div class="col col_2 animated fadeInRightShort">
+                            <div class="abs">
+                                прогнозируемый <br>
+                                результат до
+                            </div>
+                            <div class="count">55%</div>
+                            <div class="time">за 3 года</div>
+                            <a href="#" class="btn w big">узнать больше</a>
+                        </div>
+                        <div class="clear"></div>
                     </div>
+
+                    <div class="row animatedParent animateOnce list-st">
+                        <div class="col col_2 animated fadeInLeftShort">
+                            <div class="name">
+                                Консервативная<br>
+                                инвестиционная стратегия
+                            </div>
+                        </div>
+                        <div class="col col_2 animated fadeInRightShort">
+                            <div class="abs">
+                                прогнозируемый <br>
+                                результат до
+                            </div>
+                            <div class="count">40%</div>
+                            <div class="time">за 3 года</div>
+                            <a href="#" class="btn w big">узнать больше</a>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+
+    <div class="section _6_2">
+        <div class="wrap">
+            <div class="content">
+                <div class="row animatedParent animateOnce">
+                    <div class="col left">
+                        <a href="https://www.ingosinvest.ru/" class="logo animated fadeInDownShort"></a>
+                    </div>
+                    <div class="col right">
+                        <h2 class="animated fadeInRight">Как открыть инвестиционный счет?</h2>
+                        <div class="text animated fadeInRight">Вы можете оставить нам заявку на открытие инвестиционного счета онлайн или обратиться в наш офис продаж</div>
+                        <button onclick="MainManager.showModal('application', true)" class="btn animated fadeInUpShort">
+                            Оставить
+                            <br>
+                            заявку
+                        </button>
+
+                        <button onclick="MainManager.showModal('map', false)" class="btn abs animated fadeInUpShort big">
+                            офис продаж
+                        </button>
+                    </div>
+                    <div class="clear"></div>
                 </div>
             </div>
         </div>
+        <div class="map">
+                <script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?sid=a6egA8WI4U2c1rSwPJULqMxCDIk4pslC&amp;width=100%&amp;lang=ru_RU&amp;sourceType=constructor&amp;scroll=false"></script>
+        </div>
+    </div>
+
         
     <div class="footer animatedParent animateOnce">
             <div class="wrap animated fadeInUpShort">
@@ -1411,6 +1704,8 @@
     <script src="js/jquery.maskedinput.min.js"></script>
     <script src="js/manager.js"></script>
     <script src="js/init.js"></script>
+
+    <script src="js/page.js"></script>
 
 </body>
 </html>

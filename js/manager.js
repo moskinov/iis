@@ -4,6 +4,7 @@ function MainManager_f() {
   this.MIDDLE = 200000;
   this.MAX = 400000;
   this.view = $('[data-example-view]');
+  this.viewPage = $('[data-page-view]');
   this.validate = $('[data-validate]');
   this.phone = $('[data-phone]');
   this.cirilica = $('[data-cirilica]');
@@ -203,6 +204,10 @@ function MainManager_f() {
             MainManager.showResultMain(leftValue);
           }
 
+          if(drug == 'data-slider-page') {
+            MainManager.animateCount(leftValue);
+          }
+
         }
       }
     });
@@ -213,6 +218,10 @@ function MainManager_f() {
 
       if(input == 'data-value-example') {
         MainManager.showResultMain(val);
+      }
+
+      if(drug == 'data-slider-page') {
+        MainManager.animateCount(val);
       }
 
       if (val < MainManager.MIN || val > MainManager.MAX) {
@@ -252,11 +261,102 @@ function MainManager_f() {
     });
   };
 
+  this.addS = function(v){
+    var s = v.toString();
+    var r = s.replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, '$1 ');
+    return r;
+  };
+
+  this.dellS = function(v){
+    var s = v.toString();
+    var r = s.replace(/\s+/g, '');
+    return r;
+  };
+
   this.calcMain = function(val,attr) {
-    var p2 = (val*attr) / 100 + val;
-    var str = p2.toString();
-    var res = str.replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, '$1 ');
+    var p = (val*attr) / 100 + val;
+    var res = MainManager.addS(p);
     return res;
+  };
+
+  this.calcProfit = function(val,attr) {
+    var p = (val*attr) / 100;
+    var res = MainManager.addS(p);
+    return res;
+  };
+
+  this.calcTax = function(val) {
+    var p = (val*13) / 100;
+    var res = MainManager.addS(p);
+    return res;
+  };
+
+  this.backPercent = function(val1,val2) {
+
+    var x = val1 * 100 / val2;
+    var result = x - 100;
+    var int = MainManager.isInteger(result);
+    var fix = result.toFixed(1);
+
+    if(int) {
+
+      return result;
+
+    } else {
+
+      return fix;
+
+    }
+
+  };
+
+  this.isInteger = function (num) {
+    return (num ^ 0) === num;
+  };
+
+  this.animateCount = function(count) {
+
+    var a = parseInt(count);
+    var p = parseInt(MainManager.viewPage.attr('data-percent'));
+
+    var profit = MainManager.calcProfit(a,p);
+    var profitClear = MainManager.dellS(profit);
+    var tax = MainManager.calcTax(a);
+    var taxClear  = MainManager.dellS(tax);
+    var total = MainManager.calcMain(a,p);
+    var totalClear  = MainManager.dellS(total);
+    var income = profitClear - taxClear;
+    var percentTotal = MainManager.backPercent(parseInt(totalClear), a);
+    var percentProfit = MainManager.backPercent(parseInt(income) + a, a);
+
+    if (a < MainManager.MIN || a > MainManager.MAX || count == '') {
+
+      MainManager.viewPage.addClass('error');
+
+      $('[data-val-count]').css({'height': 0 });
+      $('[data-val-profit]').css({'height': 0 });
+      $('[data-h]').addClass('result-hide');
+
+    } else {
+
+      MainManager.viewPage.removeClass('error');
+      $('[data-h]').removeClass('result-hide');
+
+      $('[data-val-count]').css({'height': MainManager.cssHeight(a) });
+      $('[data-val-profit]').css({'height': MainManager.cssHeight(profitClear) });
+
+      $('[data-calc-profit]').html(MainManager.calcMain(a,p));
+      $('[data-calc-original]').html(MainManager.addS(a));
+      $('[data-calc-tax]').html(tax);
+      $('[data-orign-profit]').html(MainManager.addS(income));
+      $('[data-num-percent-all]').html(percentTotal);
+      $('[data-num-percent-orign]').html(percentProfit);
+    }
+  };
+
+  this.cssHeight = function(a) {
+    var height = a / 3500;
+    return height;
   };
 
   this.validInit = function (input,valid,text) {
@@ -340,6 +440,46 @@ function MainManager_f() {
       return false;
     }
 
+  };
+
+  this.orderCall = function(){
+
+    var validate = [
+      {
+        name: 'data-order-call-name',
+        regexp: MainManager.regexpCirilica,
+        text: 'Только буквы, пробел и дефис'
+      },
+      {
+        name: 'data-order-call-phone',
+        regexp: MainManager.regexpAll,
+        text: 'Поле не должно быть пустым'
+      }
+    ];
+
+    var valid;
+
+    for (var i in validate) {
+
+      valid = MainManager.validInit($('['+validate[i].name+']'),validate[i].regexp,validate[i].text);
+
+      if (!valid) {
+
+        break;
+      }
+
+    }
+
+    if (valid) {
+
+      alert('Submit order call');
+
+      MainManager.hideModal('order-call',true);
+
+    } else {
+
+      return false;
+    }
   };
 
   this.nextStep = function (form, page){
@@ -592,6 +732,24 @@ function MainManager_f() {
     }
   };
 
+  this.submitMailCalculation = function(){
+
+    var valid;
+
+    valid = MainManager.validInit($('[data-forward-calculation-mail]'),MainManager.regexpMail,'E-mail введен некорректно');
+
+    if (valid) {
+
+      alert('Submit calculation mail');
+
+      MainManager.hideModal('forward-calculation',true);
+
+    } else {
+
+      return false;
+    }
+  };
+
   this.dataJSON = function (form) {
 
     var o = {};
@@ -793,5 +951,39 @@ function MainManager_f() {
       MainManager.validError(MainManager.smsInput,'Поле не должно быть пустым');
     }
   };
+
+  this.initPage = function() {
+
+    MainManager.initDrug('data-slider-page','data-value-page');
+
+    $('[data-type-slider]').owlCarousel({
+      items: 1,
+      nav: false,
+      autoHeight: true,
+      navRewind: false,
+      smartSpeed: 100,
+      navText: ['',''],
+      mouseDrag: false,
+      touchDrag: false,
+      pullDrag: false
+    });
+  };
+
+  this.listType = function(page, el) {
+
+    $('[data-btn-list]').removeClass('active');
+
+    $(el).addClass('active');
+
+    if(page == 'next') {
+
+      $('[data-type-slider]').trigger('next.owl.carousel');
+
+    } else {
+
+      $('[data-type-slider]').trigger('prev.owl.carousel');
+    }
+
+  }
 
 }
