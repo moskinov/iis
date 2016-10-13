@@ -60,6 +60,9 @@ function MainManager_f() {
     $('[data-main-slider],[data-faq-slider]').owlCarousel({
       items: 1,
       nav: true,
+      autoplay: true,
+      autoplayTimeout: 4000,
+      loop: true,
       mouseDrag: false,
       autoHeight: true,
       navRewind: false,
@@ -168,14 +171,7 @@ function MainManager_f() {
   this.initDrug = function (drug, input) {
 
     var inputEl = $('['+input+']'),
-        dragEl = $('['+drug+']'),
-        getVal = sessionStorage.getItem('value');
-
-    //if(getVal || getVal > MainManager.MIN && getVal < MainManager.MAX) {
-    //  dragEl.attr('data-cur_min',getVal);
-    //} else {
-    //  dragEl.attr('data-cur_min',200000);
-    //}
+        dragEl = $('['+drug+']');
 
     dragEl.nstSlider({
       "rounding": {
@@ -198,14 +194,14 @@ function MainManager_f() {
           inputEl.val(leftValue);
           inputEl.removeClass('error');
 
-          //sessionStorage.value = leftValue;
-
           if(drug == 'data-slider-example') {
             MainManager.showResultMain(leftValue);
+            sessionStorage.setItem('value', leftValue);
           }
 
           if(drug == 'data-slider-page') {
             MainManager.animateCount(leftValue);
+            //sessionStorage.removeItem('value');
           }
 
         }
@@ -218,18 +214,18 @@ function MainManager_f() {
 
       if(input == 'data-value-example') {
         MainManager.showResultMain(val);
+        sessionStorage.setItem('value', val);
       }
 
       if(drug == 'data-slider-page') {
         MainManager.animateCount(val);
+        //sessionStorage.removeItem('value');
       }
 
       if (val < MainManager.MIN || val > MainManager.MAX) {
         $(this).addClass('error');
-        //sessionStorage.value = '';
       } else {
         $(this).removeClass('error');
-        //sessionStorage.value = val;
       }
 
       dragEl.nstSlider('set_position', val, MainManager.MAX);
@@ -954,7 +950,24 @@ function MainManager_f() {
 
   this.initPage = function() {
 
+
     MainManager.initDrug('data-slider-page','data-value-page');
+
+    var getVal = sessionStorage.getItem('value');
+
+    if(getVal != null) {
+
+      if(getVal < MainManager.MIN || getVal > MainManager.MAX) {
+
+        sessionStorage.removeItem('value');
+
+      } else {
+
+        $('[data-slider-page]').nstSlider('set_position', getVal, MainManager.MAX);
+
+      }
+
+    }
 
     $('[data-type-slider]').owlCarousel({
       items: 1,
