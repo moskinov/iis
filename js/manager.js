@@ -60,9 +60,9 @@ function MainManager_f() {
     $('[data-main-slider],[data-faq-slider]').owlCarousel({
       items: 1,
       nav: true,
-      autoplay: true,
-      autoplayTimeout: 4000,
-      loop: true,
+      //autoplay: true,
+      //autoplayTimeout: 4000,
+      //loop: true,
       mouseDrag: false,
       autoHeight: true,
       navRewind: false,
@@ -968,6 +968,12 @@ function MainManager_f() {
       }
 
     }
+
+    setTimeout(function(){
+
+      sessionStorage.removeItem('value');
+
+    },4000);
 
     $('[data-type-slider]').owlCarousel({
       items: 1,
