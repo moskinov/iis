@@ -1376,3 +1376,25 @@ button,a.btn {
     @include transform(translateY(0));
   }
 }
+
+.set-slide.main {
+
+  .input input {
+    @include box-shadow(0 0 0 0 transparent);
+    @include transition(all 0.3s);
+  }
+
+  .nstSlider .bar {
+    @include transition(background 0.3s);
+  }
+}
+
+.set-slide.main:hover {
+  .slide input {
+    @include box-shadow(0 0 10px 7px #0093d0);
+    border-color: #0072b5;
+  }
+  .nstSlider .bar {
+    background: #0093d0;
+  }
+}

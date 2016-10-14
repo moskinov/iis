@@ -31,7 +31,9 @@ function MainManager_f() {
 
   this.init = function () {
 
-    MainManager.fixPanelF();
+    if(MainManager.fixButton.length) {
+      MainManager.fixPanelF();
+    }
 
     //static append day select
     for(var i=2; i < 32; i++) {

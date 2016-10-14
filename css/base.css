@@ -1130,4 +1130,28 @@ button, a.btn {
     -ms-transform: translateY(0);
     transform: translateY(0); }
 
+.set-slide.main .input input {
+  -webkit-box-shadow: 0 0 0 0 transparent;
+  -moz-box-shadow: 0 0 0 0 transparent;
+  -ms-box-shadow: 0 0 0 0 transparent;
+  box-shadow: 0 0 0 0 transparent;
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  -ms-transition: all 0.3s;
+  transition: all 0.3s; }
+.set-slide.main .nstSlider .bar {
+  -webkit-transition: background 0.3s;
+  -moz-transition: background 0.3s;
+  -ms-transition: background 0.3s;
+  transition: background 0.3s; }
+
+.set-slide.main:hover .slide input {
+  -webkit-box-shadow: 0 0 10px 7px #0093d0;
+  -moz-box-shadow: 0 0 10px 7px #0093d0;
+  -ms-box-shadow: 0 0 10px 7px #0093d0;
+  box-shadow: 0 0 10px 7px #0093d0;
+  border-color: #0072b5; }
+.set-slide.main:hover .nstSlider .bar {
+  background: #0093d0; }
+
 /*# sourceMappingURL=base.css.map */
