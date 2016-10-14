@@ -191,7 +191,7 @@ function MainManager_f() {
 
         if (!focusInput) {
 
-          inputEl.val(leftValue);
+          inputEl.val(MainManager.addS(leftValue));
           inputEl.removeClass('error');
 
           if(drug == 'data-slider-example') {
@@ -213,22 +213,22 @@ function MainManager_f() {
       var val = this.value;
 
       if(input == 'data-value-example') {
-        MainManager.showResultMain(val);
-        sessionStorage.setItem('value', val);
+        MainManager.showResultMain(MainManager.dellS(val));
+        sessionStorage.setItem('value', MainManager.dellS(val));
       }
 
       if(drug == 'data-slider-page') {
-        MainManager.animateCount(val);
+        MainManager.animateCount(MainManager.dellS(val));
         //sessionStorage.removeItem('value');
       }
 
-      if (val < MainManager.MIN || val > MainManager.MAX) {
+      if (MainManager.dellS(val) < MainManager.MIN || MainManager.dellS(val) > MainManager.MAX) {
         $(this).addClass('error');
       } else {
         $(this).removeClass('error');
       }
 
-      dragEl.nstSlider('set_position', val, MainManager.MAX);
+      dragEl.nstSlider('set_position', MainManager.dellS(val), MainManager.MAX);
 
     });
 
