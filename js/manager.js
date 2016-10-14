@@ -21,6 +21,8 @@ function MainManager_f() {
   this.smsBlock = $('[data-sms-block]');
   this.smsBtn = $('[data-btn-sms]');
   this.smsInput = $('[data-sms]');
+  this.fixButton = $('[data-fix-button]');
+  this.fixPanel = $('[data-fix-panel]');
 
 
   this.regexpCirilica = /^[ёЁа-яА-Яa-zA-Z\s\-]+$/;
@@ -28,6 +30,18 @@ function MainManager_f() {
   this.regexpAll = /[^\>]*/;
 
   this.init = function () {
+
+    $(window).scroll(function(){
+
+      if($(this).scrollTop() - 50 > MainManager.fixButton.offset().top) {
+
+        MainManager.fixPanel.addClass('fix');
+
+      } else {
+
+        MainManager.fixPanel.removeClass('fix');
+      }
+    });
 
     //static append day select
     for(var i=2; i < 32; i++) {

@@ -795,6 +795,16 @@
         </div>
     </div>
 
+    <!--fix-panel-->
+    <div class="fix-panel" data-fix-panel>
+        <div class="wrap">
+            <div class="content">
+                <button onclick="MainManager.showModal('application', true)" class="btn">отправить<br>заявку</button>
+                <button onclick="MainManager.showModal('purchase', true)" class="btn big">купить</button>
+            </div>
+        </div>
+    </div>
+
     <div class="section _1 animatedParent animateOnce">
             <div class="bg">
                 <div class="el"></div>
@@ -822,15 +832,18 @@
                             или освобождение инвестиционного дохода от уплаты налога.</p>
                     </div>
 
-                    <button onclick="MainManager.showModal('application', true)" class="btn animated fadeInUpShort">
-                        отправить
-                        <br>
-                        заявку
-                    </button>
+                    <div data-fix-button>
 
-                    <button onclick="MainManager.showModal('purchase', true)" class="btn big animated fadeInUpShort">
-                        купить
-                    </button>
+                        <button onclick="MainManager.showModal('application', true)" class="btn animated fadeInUpShort">
+                            отправить
+                            <br>
+                            заявку
+                        </button>
+
+                        <button onclick="MainManager.showModal('purchase', true)" class="btn big animated fadeInUpShort">
+                            купить
+                        </button>
+                    </div>
 
                 </div>
             </div>
