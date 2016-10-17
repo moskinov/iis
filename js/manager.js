@@ -53,15 +53,6 @@ function MainManager_f() {
       }
     }
 
-    //static append year select
-    for(var i=2; i < 17; i++) {
-      if(i < 10) {
-        $('[data-year]').append('<option value="0'+i+'">200'+i+'</option>')
-      } else {
-        $('[data-year]').append('<option value="'+i+'">20'+i+'</option>')
-      }
-    }
-
     //quote slider init
     $('[data-main-slider],[data-faq-slider]').owlCarousel({
       items: 1,

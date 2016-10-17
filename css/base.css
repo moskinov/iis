@@ -431,6 +431,8 @@ a {
         background-color: rgba(255, 255, 255, 0.7); }
         .section._6_2 .btn.abs:hover {
           background-color: #e31a51; }
+      .section._6_2 .btn.big:not(.abs) {
+        margin-left: 50px; }
     .section._6_2 .map {
       width: 100%;
       height: 200px;
@@ -450,7 +452,7 @@ a {
   list-style: none;
   padding: 0;
   margin: 40px 0 0 0;
-  width: 25%;
+  width: 30%;
   float: left; }
   .modal-content.map .list-address .name {
     font-size: 20px;

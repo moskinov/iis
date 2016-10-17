@@ -339,12 +339,14 @@
   }
   .section._6_2 .btn {
     display: block;
-    margin-left: auto;
+    margin-left: auto !important;
     margin-right: auto;
+    margin-bottom: 30px;
   }
   .section._6_2 .btn.abs {
     left: 0;
     right: 0;
+    margin-bottom: 0 !important;
   }
   .modal-content.map .list-address {
     width: 50%;
