@@ -95,7 +95,7 @@ function MainManager_f() {
     });
 
     //init passport value
-    MainManager.series.mask('99 99 999 999');
+    MainManager.series.mask('99 99 999999');
     MainManager.series.on('focusout',function(){
       var el = $(this);
       setTimeout(function(){
@@ -105,12 +105,12 @@ function MainManager_f() {
 
     //init code value
     MainManager.code.mask('999-999');
-    MainManager.code.on('focusout',function(){
-      var el = $(this);
-      setTimeout(function(){
-        MainManager.validInit(el,MainManager.regexpAll,'Поле не должно быть пустым')
-      },200);
-    });
+    //MainManager.code.on('focusout',function(){
+    //  var el = $(this);
+    //  setTimeout(function(){
+    //    MainManager.validInit(el,MainManager.regexpAll,'Поле не должно быть пустым')
+            //  },200);
+    //});
 
     //init cirilica value
     MainManager.cirilica.on('focusout',function(){
@@ -490,11 +490,6 @@ function MainManager_f() {
           text: 'Только буквы, пробел и дефис'
         },
         {
-          name: 'data-'+form+'-middlename',
-          regexp: MainManager.regexpCirilica,
-          text: 'Только буквы, пробел и дефис'
-        },
-        {
           name: 'data-'+form+'-mail',
           regexp: MainManager.regexpMail,
           text: 'E-mail введен некорректно'
@@ -511,11 +506,6 @@ function MainManager_f() {
         },
         {
           name: 'data-'+form+'-issued',
-          regexp: MainManager.regexpAll,
-          text: 'Поле не должно быть пустым'
-        },
-        {
-          name: 'data-'+form+'-code',
           regexp: MainManager.regexpAll,
           text: 'Поле не должно быть пустым'
         }
