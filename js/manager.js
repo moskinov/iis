@@ -57,11 +57,11 @@ function MainManager_f() {
     $('[data-main-slider],[data-faq-slider]').owlCarousel({
       items: 1,
       nav: true,
-      //autoplay: true,
-      //autoplayTimeout: 4000,
-      //loop: true,
+      autoplay: true,
+      autoplayTimeout: 4000,
+      loop: true,
       mouseDrag: false,
-      autoHeight: true,
+      //autoHeight: true,
       navRewind: false,
       navText: ['','']
     });
@@ -641,6 +641,13 @@ function MainManager_f() {
     $('[data-modal='+el+']').animate({scrollTop: 0}, 500);
   };
 
+  this.slidePrevView = function(el){
+
+    $('[data-step-form='+el+']').trigger('prev.owl.carousel');
+
+    $('[data-modal='+el+']').animate({scrollTop: 0}, 500);
+  };
+
   this.submitApplication = function() {
     var validate = [
       {
@@ -707,6 +714,14 @@ function MainManager_f() {
     }
   };
 
+  this.printT = function() {
+    var divToPrint = document.getElementById("printTable");
+    newWin= window.open("");
+    newWin.document.write(divToPrint.outerHTML);
+    newWin.print();
+    newWin.close();
+  };
+
   this.submitMailDocs = function(){
 
     var valid;
@@ -719,9 +734,29 @@ function MainManager_f() {
 
       MainManager.hideModal('forward-doc',true);
 
+      MainManager.showModal('forward-text',false);
+
     } else {
 
       return false;
+    }
+  };
+
+  this.endPurchase = function(){
+    if($('[data-refill="card"]').is(':checked')) {
+
+        alert('User is sent to the acquiring and return back');
+
+        MainManager.hideModal('purchase', true);
+
+        MainManager.showModal('purchase-text',false);
+
+    } else {
+
+      MainManager.hideModal('purchase', true);
+
+      MainManager.showModal('purchase-requisites',false);
+
     }
   };
 

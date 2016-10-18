@@ -213,8 +213,12 @@
   .section._7 .form tr td.label {
     font-size: 16px; }
 
-  .form tr td.center .btn, .purchase .form.fixed tr td .valid-box {
+  .form tr td.center .btn,
+  .purchase .form.fixed tr td .valid-box {
     width: 160px !important; }
+
+  .purchase .form.fixed tr.set-steps td .btn {
+    width: 100px !important; }
 
   .purchase .form.fixed tr td.get-sms a {
     font-size: 10px; }

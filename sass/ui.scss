@@ -296,13 +296,21 @@ select {
           }
           .processing {
             text-align: center;
-            padding-top: 16px;
           }
           .info {
             font-size: 14px;
             line-height: 16px;
             padding-top: 40px;
           }
+        }
+      }
+    }
+    tr.set-steps {
+      td:not(.label) {
+        .btn {
+          display: block;
+          margin-left: auto;
+          margin-right: auto;
         }
       }
     }

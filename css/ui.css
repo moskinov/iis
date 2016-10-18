@@ -214,12 +214,15 @@ select {
     .purchase .form.fixed tr td.last .btn {
       margin-top: 0; }
     .purchase .form.fixed tr td.last .processing {
-      text-align: center;
-      padding-top: 16px; }
+      text-align: center; }
     .purchase .form.fixed tr td.last .info {
       font-size: 14px;
       line-height: 16px;
       padding-top: 40px; }
+  .purchase .form.fixed tr.set-steps td:not(.label) .btn {
+    display: block;
+    margin-left: auto;
+    margin-right: auto; }
 
 .checkbox-label {
   display: inline-block;

@@ -339,8 +339,10 @@
                                         </div>
                                     </td>
                                 </tr>
-                                <tr>
-                                    <td class="label"></td>
+                                <tr class="set-steps">
+                                    <td class="label">
+                                        <a href="#" class="btn big" onclick="MainManager.slidePrevView('application'); return false">Назад</a>
+                                    </td>
                                     <td>
                                         <a href="#" class="btn big" onclick="MainManager.submitApplication(); return false">отправить</a>
                                     </td>
@@ -629,12 +631,16 @@
                                             </label>
                                         </td>
                                     </tr>
-                                    <tr>
-                                        <td class="label"></td>
+
+                                    <tr class="set-steps">
+                                        <td class="label">
+                                            <a href="#" class="btn big" onclick="MainManager.slidePrevView('purchase'); return false">Назад</a>
+                                        </td>
                                         <td>
                                             <a href="#" class="btn big" onclick="MainManager.nextStep('purchase',2); return false">отправить</a>
                                         </td>
                                     </tr>
+
                                     <tr>
                                         <td class="label"></td>
                                         <td>
@@ -686,9 +692,19 @@
                                                             <a href="#">ПРИСЛАТЬ ПОВТОРНО</a>
                                                         </td>
                                                     </tr>
+
+                                                    <tr class="set-steps">
+                                                        <td class="label">
+                                                            <a href="#" class="btn big" onclick="MainManager.slidePrevView('purchase'); return false">Назад</a>
+                                                        </td>
+                                                        <td>
+                                                            <a href="#" class="btn big" onclick="MainManager.subscribeData('purchase'); return false;">ПОДПИСАТЬ</a>
+                                                        </td>
+                                                        <td></td>
+                                                    </tr>
+
                                                     <tr>
                                                         <td colspan="3" class="center last">
-                                                            <a href="#" class="btn big" onclick="MainManager.subscribeData('purchase'); return false;">ПОДПИСАТЬ</a>
                                                             <div class="processing">
                                                                 Нажимая кнопку «подписать», вы соглашаетесь <br>
                                                                 на <a href="#" onclick="MainManager.showModal('limited', false); return false;">обработку</a> своих персональных данных
@@ -732,8 +748,9 @@
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td colspan="2" class="center">
-                                            <a href="#" class="btn big" onclick="return false">пополнить</a>
+                                        <td colspan="2">
+                                            <a href="#" class="btn big mr30" onclick="MainManager.slidePrevView('purchase'); return false">Назад</a>
+                                            <a href="#" class="btn big" onclick="MainManager.endPurchase(); return false">пополнить</a>
                                         </td>
                                     </tr>
                                 </table>
@@ -784,44 +801,139 @@
     </div>
 </div>
 
-    <!--modal forward doc-->
-    <div class="modal" data-modal="forward-doc">
-    <div class="modal-content forward">
-        <div class="wrap">
-            <div class="content">
-                <div class="close" onclick="MainManager.hideModal('forward-doc',true)"></div>
-                <h2 class="m-b20">Отправить документы на e-mail</h2>
-                <div class="m-b35">Ваши контактные данные</div>
-                <form action="" id="forward-doc">
-                    <table class="form">
-                        <tr>
-                            <td class="label">Электронная почта&nbsp;<span>*</span></td>
-                            <td>
-                                <div class="valid-box">
-                                    <input data-forward-doc-mail data-mail data-validate type="text" name="maildoc">
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="label"></td>
-                            <td>
-                                <a href="#" class="btn" onclick="MainManager.submitMailDocs(); return false">отправить<br>документы</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="label"></td>
-                            <td>
-                                <div class="processing">
-                                    Согласен на <a href="#" onclick="MainManager.showModal('limited', false); return false;">обработку</a> персональных данных
-                                </div>
-                            </td>
-                        </tr>
-                    </table>
-                </form>
+    <!--modal purchase-text-->
+    <div class="modal" data-modal="purchase-text">
+        <div class="modal-content limited">
+            <div class="wrap">
+                <div class="content">
+                    <div class="close" onclick="MainManager.hideModal('purchase-text',false)"></div>
+                    <div class="text-modal">
+                        <p>
+                            Уважаемый/ая ФИО, <br>
+                            Благодарим Вас за открытие ИИС в АО УК «Ингосстрах-Инвестиции»!
+                        </p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-</div>
+
+    <!--modal purchase-requisites-->
+    <div class="modal" data-modal="purchase-requisites">
+        <div class="modal-content limited">
+            <div class="wrap">
+                <div class="content">
+                    <div class="close" onclick="MainManager.hideModal('purchase-requisites',false)"></div>
+                    <div class="text-modal">
+                        <p>
+                            Уважаемый/ая ФИО, <br>
+                            Благодарим Вас за открытие ИИС в АО УК «Ингосстрах-Инвестиции»! <br>
+                            Сообщаем Вам реквизиты для перевода денежных средств:
+                        </p>
+                    </div>
+                    <div class="requisites-data">
+                        <div class="link-requisites">
+                            <a href="#" class="send" onclick="MainManager.showModal('forward-doc',false)"></a>
+                            <a href="#" onclick="MainManager.printT(); return false;" class="print"></a>
+                            <div class="clear"></div>
+                        </div>
+                        <div id="printTable">
+                            <style>
+                                ._t {
+                                    width: 100%;
+                                    border-collapse: collapse;
+                                }
+                                ._t td {
+                                    vertical-align: top;
+                                    border: 1px solid #333333;
+                                    padding: 5px 10px;
+                                }
+                            </style>
+                            <table class="_t">
+                                <tr>
+                                    <td>р/с:</td>
+                                    <td>40701 810 8 000000 28886 в Банк ГПБ (АО)</td>
+                                </tr>
+                                <tr>
+                                    <td>к/с:</td>
+                                    <td>30101810200000000823</td>
+                                </tr>
+                                <tr>
+                                    <td>БИК:</td>
+                                    <td>044525823</td>
+                                </tr>
+                                <tr>
+                                    <td>ИНН/КПП получателя:</td>
+                                    <td>7705136973 / 775001001</td>
+                                </tr>
+                                <tr>
+                                    <td>код ОКПО:</td>
+                                    <td>46350001</td>
+                                </tr>
+                                <tr>
+                                    <td>Получатель платежа:</td>
+                                    <td>АО УК «Ингосстрах-Инвестиции» Д.У.</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--modal forward doc-->
+    <div class="modal" data-modal="forward-doc">
+        <div class="modal-content forward">
+            <div class="wrap">
+                <div class="content">
+                    <div class="close" onclick="MainManager.hideModal('forward-doc',true)"></div>
+                    <h2 class="m-b20">Отправить документы на e-mail</h2>
+                    <div class="m-b35">Ваши контактные данные</div>
+                    <form action="" id="forward-doc">
+                        <table class="form">
+                            <tr>
+                                <td class="label">Электронная почта&nbsp;<span>*</span></td>
+                                <td>
+                                    <div class="valid-box">
+                                        <input data-forward-doc-mail data-mail data-validate type="text" name="maildoc">
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="label"></td>
+                                <td>
+                                    <a href="#" class="btn" onclick="MainManager.submitMailDocs(); return false">отправить<br>документы</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="label"></td>
+                                <td>
+                                    <div class="processing">
+                                        Согласен на <a href="#" onclick="MainManager.showModal('limited', false); return false;">обработку</a> персональных данных
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--modal forward-text-->
+    <div class="modal" data-modal="forward-text">
+        <div class="modal-content limited">
+            <div class="wrap">
+                <div class="content">
+                    <div class="close" onclick="MainManager.hideModal('forward-text',false)"></div>
+                    <div class="text-modal">
+                        <p>На Вашу электронную почту был направлен комплект документов.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!--modal limited-->
     <div class="modal" data-modal="limited">
