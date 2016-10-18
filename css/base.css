@@ -240,8 +240,8 @@ a {
       margin-top: 55px; }
       .section._4 .author .sub {
         font-family: 'pf_agora_sans_promedium','Helvetica',Arial,sans-serif;
-        font-size: 12px;
-        line-height: 14px;
+        font-size: 13px;
+        line-height: 15px;
         padding-top: 60px; }
       .section._4 .author .name {
         font-size: 24px;
@@ -373,11 +373,11 @@ a {
     .section._1_1 .intro {
       text-align: center;
       font-family: 'pf_agora_sans_promedium','Helvetica',Arial,sans-serif;
-      font-size: 12px;
-      line-height: 14px;
+      font-size: 13px;
+      line-height: 15px;
       padding-top: 50px; }
       .section._1_1 .intro a {
-        font-size: 12px; }
+        font-size: 13px; }
   .section._3_1 .col .zag {
     font-size: 30px;
     line-height: 36px;
@@ -778,8 +778,8 @@ a {
   .set-slide .text-intro {
     padding: 20px 0 0 160px;
     font-family: 'pf_agora_sans_promedium','Helvetica',Arial,sans-serif;
-    font-size: 12px;
-    line-height: 14px;
+    font-size: 13px;
+    line-height: 15px;
     color: #ffffff; }
   .set-slide.for-text {
     color: #ffffff;
