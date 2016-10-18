@@ -438,15 +438,13 @@ a {
       }
     }
     .button-set {
-      text-align: right;
+      text-align: center;
       .btn {
         width: 180px;
         padding-left: 0;
         padding-right: 0;
-        margin-left: 50px;
-        &.first {
-          margin-left: 0;
-        }
+        margin-left: 20px;
+        margin-right: 20px;
       }
     }
     .intro {

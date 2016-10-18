@@ -363,14 +363,13 @@ a {
         .section._1_1 .set-slide .nstSlider .bar {
           background: #f7f7f7; }
     .section._1_1 .button-set {
-      text-align: right; }
+      text-align: center; }
       .section._1_1 .button-set .btn {
         width: 180px;
         padding-left: 0;
         padding-right: 0;
-        margin-left: 50px; }
-        .section._1_1 .button-set .btn.first {
-          margin-left: 0; }
+        margin-left: 20px;
+        margin-right: 20px; }
     .section._1_1 .intro {
       text-align: center;
       font-family: 'pf_agora_sans_promedium','Helvetica',Arial,sans-serif;
