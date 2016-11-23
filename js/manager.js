@@ -829,6 +829,20 @@ function MainManager_f() {
           responsiveBaseElement: $('[data-modal]')
         });
 
+        //fix tab step
+        $('[data-modal='+modal+']').on('keydown', function(e) {
+
+          var keyCode = e.keyCode || e.which;
+
+          if (keyCode == 9) {
+
+            if($(e.target).hasClass('btn')) {
+
+              e.preventDefault();
+            }
+          }
+        });
+
         drag.nstSlider('refresh');
 
         drag.nstSlider('set_position', MainManager.MIDDLE, MainManager.MAX);
